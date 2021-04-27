@@ -11,24 +11,27 @@ import edu.duke.*;
 
 public class Part1 {
     
-    public int findStopCodon (String dna, int startIndex, String stopCodon) {
-        int currIndex = dna.indexOf(stopCodon, startIndex+3);
+    public int findStopCodon (String dnaStr, int startIndex, String stopCodon) {
+        int currIndex = dnaStr.indexOf(stopCodon, startIndex+3);
         while (currIndex != -1) {
             int diff = currIndex - startIndex;
             if (diff % 3 == 0) {
                 return currIndex;
             }
             else {
-                currIndex = dna.indexOf(stopCodon, currIndex +1);
+                currIndex = dnaStr.indexOf(stopCodon, currIndex +3);
             }
             
         }
-        return dna.length();
+        return dnaStr.length();
     }
     
     
     public String findGene (String dna, int startIndex) {
-        startIndex = dna.indexOf("ATG");
+        dna = dna.toUpperCase();
+        startIndex = dna.indexOf("ATG", startIndex);
+               
+        
         if (startIndex == -1) {
             return "";
         }
@@ -36,6 +39,8 @@ public class Part1 {
         int tagIndex = findStopCodon(dna, startIndex, "TAG");
         int tgaIndex = findStopCodon(dna, startIndex, "TGA");
         //int temp = Math.min(taaIndex, tagIndex);
+        
+        
         int minIndex = 0;
         if (taaIndex == -1 || (tgaIndex != -1 && tgaIndex < taaIndex)){
             minIndex = tgaIndex;
@@ -47,13 +52,17 @@ public class Part1 {
         if (minIndex == -1 || (tagIndex != -1 && tagIndex < minIndex)) {
             minIndex = tagIndex;
         }
-        
+         
         if (minIndex == -1) {
             return "";
         }
-           
         
-        return dna.substring(startIndex, minIndex + 3);
+    
+        String gene = dna.substring(startIndex, minIndex + 3);
+        startIndex = dna.indexOf(gene, startIndex) + gene.length();
+     
+        return gene;
+        
     }
     
     public void testFindStopCodon(){
@@ -67,32 +76,46 @@ public class Part1 {
         if (dex !=26) System.out.println("error on 26");
         dex = findStopCodon(dna, 0, "TAG");
         if (dex !=26) System.out.println("error on 26 TAG");
-        dex = findStopCodon(dna, 0, "TAG");
+        
         System.out.println("tests finished");
         
     }
     
     public void testFindGene() {
-        String dna = "ATGCCCGGGAAATAACCC";
+        String dna = "ATGCCCGGGAAATGAGCCC";
         String gene = findGene(dna, 0);
-        if (! gene.equals("ATGCCCGGGAAATAA")) {
+        
+        System.out.println(gene);
+        if (! gene.equals("ATGCCCGGGAAATGA")) {
             System.out.println("error");
         }
         
         System.out.println("tests finished");
     }
     
-    public void printAllGenes() {
+    public void printAllGenes(String dna) {
         int startIndex = 0;
-        String dna = "ATGATCTAATTTATGCTGCAACGGTGAAGA";
+        
         
         while (true) {
-            String currentGene = findGene(dna, 0);
+            
+            String currentGene = findGene(dna, startIndex);
             
             if (currentGene.isEmpty()) {
                 break;
             }
+            
+            
+                        
+            if (startIndex == -1){
+                break;
+            }
+            
+            
+            startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
             System.out.println(currentGene);
+            
+            
         }
     }
     
@@ -102,7 +125,7 @@ public class Part1 {
         
         startIndex = 0;
         
-        while (true) {
+        while (startIndex <= dna.length()) {
             String gene = findGene(dna, startIndex);
             
             if (gene.isEmpty()) {
@@ -113,7 +136,7 @@ public class Part1 {
             geneList.add(gene);
             
             // Set startIndex to just past the end of currentgene
-            startIndex = dna.indexOf(gene, startIndex)+ gene.length();
+            startIndex = (dna.indexOf(gene, startIndex) + gene.length());
             
         }
         return geneList;
@@ -122,45 +145,45 @@ public class Part1 {
     public void testOn (String dna) {
 
         System.out.println("Testing getAllGenes on " + dna);
-        StorageResource genes = getAllGenes(dna, 0);
-        for (String g: genes.data()) {
-            System.out.println(g);
-        }
+        printAllGenes(dna);
+        //StorageResource genes = printAllGenes(dna);
+        //for (String g: genes.data()) {
+        //    System.out.println(g);
+        //}
         
     }
     
     public void test() {
-        testOn("ATGATCTAATTTATGCTGCAACGGTGAAGA");
-        testOn("");
-        testOn("ATGATCATAAGAAGATAATAGAGGGCCATGTAA");
+        FileResource fr = new FileResource("brca1line.fa");
+        String dna2 = fr.asString();
+        
+        //testOn(dna2);
+        //testOn("");
+        //testOn("ATGATCATAAGAAGATAATAGAGGGCCATGTAA");
+        //testOn("nonCodingDNAxxxMyGeneATGmyGenexTAAxxGeneATGTAACATGTAAATGCendTAATAAnonCodingDNAxTAGxTGA");
+        testOn("oneAtGMyGeneOneAATGGGGTAATGATAGAACCCGGYGGGGTAGGGCTGCCCATGendOneTAAnonCodingDnaTAGTGAZZZtaaTwoATGMyGeneTwoCATGGGGTAATGATAGCCatgCCCFalseStartTAATGATGendTwoTAGnonCodingDNATAACCCThreeATGMyGeneThreeATGGGGTAATGATAGATGccendThreeTAAnonCodingDNAccTAAfalsecccFourATGMyGeneFourATGGGGTAATGATAGCendFourTAGnonCodingdnaFiveAtgMyGeneFiveATGGGGTAATGATAGCendFiveTGAnonCodingdnaSixATGmyGeneSixATATGGGGTAATGATAGAendSixTAAnoncodingdnaSevenATGMyGeneSevenCcATGGGGTAATGATAGendSeventaAnoncodingdnaEightATGmyGeneEightATGGGGTAATGATAGGGendEighttaAnoncodingdnaCcccWrongtgaCtaaCtagCCcgNineATgmyGeneNineATGGGGTAATGATAGTaaAendNineTAAnonCodingDnaCcccTenATGmyGeneTenGATGGGGTAATGATAGCCHasFakeATGFAKEatgcendTentaanonCodingDnaCtagCtganonCodingDnaxxxElevenATGmyGeneElevenCATGGGGTAATGATAGTAAxxGeneATGTAACATGTAAATGCendElevenTAAnonCodingDnaxTAGxtgaTwelveATGmyGeneTwelveCATGGGGTAATGATAGCTheLastGeneIsATGTAGendTwelvetgaATGTAG");
+        
     }
     
     
     public float cgRatio(String dna) {
         int count = 0;
         int length = dna.length();
-        int indexC = dna.indexOf("C");
-        int indexG = dna.indexOf("G");
-
-        
+                        
+        for (int i=0; i < length; i++) {
+            String value = String.valueOf(dna.charAt(i));
+            
+            if (value.compareToIgnoreCase("C") == 0 || value.compareToIgnoreCase("G") == 0){
+                count +=1;
                 
-        while(true) {
-            //count = count + 1;
-            //currentIndexg++;
-            //indexg = dna.indexOf("G", currentIndexg);
-            if (indexC <= length || indexG <= length) {
-                count = count += 1; 
             }
-            
-            indexC = dna.indexOf("C", indexC+1);
-            indexG = dna.indexOf("G", indexG+1);
-            
-            //return count; 
         }
+
+                      
+              
+        float cg = (float)count/dna.length();
         
-        //float cg = (float)count/dna.length();
-        
-        return count;       
+        return cg;       
     }
     
     public void testCg() {
@@ -171,7 +194,7 @@ public class Part1 {
         float result = cgRatio(dna1);
         System.out.println("cgRatio = " + result);
         
-        cgRatio("ATGCCATAG");
+        result = cgRatio("ATGCCATAG");
         System.out.println("cgRatio = " + result);
         
     }
@@ -196,6 +219,25 @@ public class Part1 {
         result = countCGT("");
         
     }
+    
+    public void processGenes(StorageResource sr) {
+        // print all strings in sr that are longer than 9 characters
+        
+        //print the number of Strings in sr that longer than 9 characters
+        
+        //print the strings in sr whose C-G ratio is higher than 0.35
+        
+        // print the number of strings in sr whose cg ratio is higher than 0.35
+        
+        // print the length of the longest gene in sr
+    }
+    
+    public void testProcessGenes() {
+        
+    }
 }
+    
+
+
     
 
