@@ -15,19 +15,19 @@ public class Part1 {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
         
-        String result = countryInfo(parser, "Germany");
-        parser = fr.getCSVParser();
-        System.out.println(result);
+        //String result = countryInfo(parser, "Nauru");
+        //parser = fr.getCSVParser();
+        //System.out.println(result);
         
-        listExportersTwoProducts(parser, "gold", "diamonds");
-        parser = fr.getCSVParser();
+        //listExportersTwoProducts(parser, "fish", "nuts");
+        //parser = fr.getCSVParser();
         
-        result = numberOfExporters(parser, "gold");
-        parser = fr.getCSVParser();
-        System.out.println("exporters = " + result);
+        //String result = numberOfExporters(parser, "sugar");
+        //parser = fr.getCSVParser();
+        //System.out.println("exporters = " + result);
         
         
-        bigExporters(parser, "$999,999,999");
+        bigExporters(parser, "$999,999,999,999");
         parser = fr.getCSVParser();
                 
     }
