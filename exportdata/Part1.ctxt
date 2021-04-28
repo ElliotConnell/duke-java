@@ -6,4 +6,6 @@ comment2.params=parser\ country
 comment2.target=java.lang.String\ countryInfo(org.apache.commons.csv.CSVParser,\ java.lang.String)
 comment3.params=parser\ exportitem1\ exportitem2
 comment3.target=void\ listExportersTwoProducts(org.apache.commons.csv.CSVParser,\ java.lang.String,\ java.lang.String)
-numComments=4
+comment4.params=parser\ exportitem
+comment4.target=java.lang.String\ numberOfExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+numComments=5

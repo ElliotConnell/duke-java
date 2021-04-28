@@ -22,8 +22,10 @@ public class Part1 {
         listExportersTwoProducts(parser, "gold", "diamonds");
         parser = fr.getCSVParser();
         
-        //numberOfExporters();
-        //parser = fr.getCSVParser();
+        result = numberOfExporters(parser, "gold");
+        parser = fr.getCSVParser();
+        System.out.println("exporters = " + result);
+        
         
         //bigExporters();
         //parser = fr.getCSVParser();
@@ -74,6 +76,23 @@ public class Part1 {
                 System.out.println(country);
             }
         }
+    }
+    
+    public String numberOfExporters(CSVParser parser, String exportitem){
+        // set the variable count
+        int count = 0;
+        // for each row of csv file
+        for (CSVRecord record : parser) {
+            // look in the exports column
+            String exports = record.get("Exports");
+            //check if string contains exportitem
+            if (exports.contains(exportitem)){
+                count += 1;
+            }
+        }
+        //convert count to string
+        String countStr = String.valueOf(count);
+        return countStr;
     }
 
 }
