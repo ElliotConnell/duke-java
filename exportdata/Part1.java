@@ -15,8 +15,9 @@ public class Part1 {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
         
-        //countryInfo(parser, "Nauru");
-        //parser = fr.getCSVParser();
+        String result = countryInfo(parser, "Germany");
+        parser = fr.getCSVParser();
+        System.out.println(result);
         
         listExportersTwoProducts(parser, "gold", "diamonds");
         parser = fr.getCSVParser();
@@ -30,7 +31,9 @@ public class Part1 {
     }
     
     
-    public void countryInfo(CSVParser parser, String country){
+    public String countryInfo(CSVParser parser, String country){
+        // set the string info
+        String info = "";
         //count variable as check
         int count = 0;
         // for each row of in the csv file
@@ -44,7 +47,7 @@ public class Part1 {
                 String exports = record.get("Exports");
                 String value = record.get("Value (dollars)");
                 //print the variables
-                System.out.println(country + ": " + exports + ": " + value);
+                info = country + ": " + exports + ": " + value;
                 //increase the count variable
                 count += 1;                
             }
@@ -52,9 +55,10 @@ public class Part1 {
         }
         //if  count variable is 0 print "NOT FOUND"
         if (count == 0) {
-            System.out.println("NOT FOUND");
+            info = "NOT FOUND";
         }
         
+        return info;
     }
     
     public void listExportersTwoProducts(CSVParser parser, String exportitem1, String exportitem2){
