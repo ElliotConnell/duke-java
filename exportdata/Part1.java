@@ -27,8 +27,8 @@ public class Part1 {
         System.out.println("exporters = " + result);
         
         
-        //bigExporters();
-        //parser = fr.getCSVParser();
+        bigExporters(parser, "$999,999,999");
+        parser = fr.getCSVParser();
                 
     }
     
@@ -93,6 +93,23 @@ public class Part1 {
         //convert count to string
         String countStr = String.valueOf(count);
         return countStr;
+    }
+    
+    public void bigExporters(CSVParser parser, String amount){
+        //for each row of csv file
+        for (CSVRecord  record : parser) {
+            //set amount length
+            int amLength = amount.length();
+            // set values length
+            String values = record.get("Value (dollars)");
+            int vaLength = values.length();
+            // if values length is greater than amount length
+            if (amLength < vaLength){
+                //print country
+                String country = record.get("Country");
+                System.out.println(country + " " + values);
+            }
+        }
     }
 
 }
