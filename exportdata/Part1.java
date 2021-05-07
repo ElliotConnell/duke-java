@@ -19,10 +19,10 @@ public class Part1 {
         //parser = fr.getCSVParser();
         //System.out.println(result);
         
-        //listExportersTwoProducts(parser, "fish", "nuts");
+        //listExportersTwoProducts(parser, "cotton", "flowers");
         //parser = fr.getCSVParser();
         
-        //String result = numberOfExporters(parser, "sugar");
+        //String result = numberOfExporters(parser, "cocoa");
         //parser = fr.getCSVParser();
         //System.out.println("exporters = " + result);
         
