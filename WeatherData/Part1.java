@@ -175,5 +175,24 @@ public class Part1 {
         System.out.println("lowest humidity was " + lowest.get("Humidity") + " at " + lowest.get("DateUTC"));
     }
     
+    public double averageTemperatureInFile(CSVParser parser) {
+        double totalTemp = 0;
+        double count = 0;
+        
+        for (CSVRecord currentRow : parser) {
+            double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
+            totalTemp = totalTemp += currentTemp;
+            count = count += 1;
+            
+        }
+        return totalTemp/count;
+    }
+    
+    public void testAverageTemperatureInFile() {
+        FileResource fr = new FileResource("data/2014/weather-2014-01-20.csv");
+        double aveTemp = averageTemperatureInFile(fr.getCSVParser());
+        
+        System.out.println("average temperature in file is " + aveTemp);
+    }
 
 }
