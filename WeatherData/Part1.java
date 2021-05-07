@@ -43,9 +43,9 @@ public class Part1 {
     }
     
     public void testColdestHourInFile() {
-        FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
+        FileResource fr = new FileResource("data/2014/weather-2014-05-01.csv");
         CSVRecord lowest = coldestHourInFile(fr.getCSVParser());
-        System.out.println("coldest temperature was " + lowest.get("TemperatureF") + " at " + lowest.get("TimeEST"));
+        System.out.println("coldest temperature was " + lowest.get("TemperatureF") + " at " + lowest.get("TimeEDT"));
         
     }
     
@@ -106,31 +106,30 @@ public class Part1 {
         CSVRecord lowestSoFar = null;
         //for each row of the csv file
         for (CSVRecord currentRow : parser) {
+            String humidity = currentRow.get("Humidity");
+            
             
             if (lowestSoFar == null) {
                 lowestSoFar = currentRow;
             }
             
-            else {
-                if (currentRow.get("Humidity") != "N/A"){
-                    double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
-                    double lowestHumidity = Double.parseDouble(lowestSoFar.get("Humidity"));
-                    // check if currentRow temp > largestSoFar
-                    if (currentHumidity < lowestHumidity){
-                        //if so update largestSoFar to currentRow
-                        lowestSoFar = currentRow;
-                    }
+            if (!humidity.equals("N/A")) {
+                double currentHumidity = Double.parseDouble(humidity);
+                double lowestHumidity = Double.parseDouble(lowestSoFar.get("Humidity"));
+                // check if currentRow temp > largestSoFar
+                if (currentHumidity < lowestHumidity){
+                    //if so update largestSoFar to currentRow
+                    lowestSoFar = currentRow;;
                 }
-                
             }
-           
+            
             
         }
         return lowestSoFar;
     }
     
     public void testLowestHumidityInFile() {
-        FileResource fr = new FileResource("data/2014/weather-2014-01-20.csv");
+        FileResource fr = new FileResource("data/2014/weather-2014-04-01.csv");
         CSVRecord lowest = lowestHumidityInFile(fr.getCSVParser());
         System.out.println("lowest humidity was " + lowest.get("Humidity") + " at " + lowest.get("DateUTC"));
     }
@@ -145,21 +144,31 @@ public class Part1 {
             FileResource fr = new FileResource(f);
             //use method to get lowest in file
             CSVRecord currentRow = lowestHumidityInFile(fr.getCSVParser());
+            String humidity = currentRow.get("Humidity");
+            
             if (lowestSoFar == null) {
                 lowestSoFar = currentRow;
-                
             }
             
-            else {
-                if (currentRow.get("Humidity") != "N/A"){
-                    double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
-                    double lowestHumidity = Double.parseDouble(lowestSoFar.get("Humidity"));
-                    // check if currentRow temp > largestSoFar
-                    if (currentHumidity < lowestHumidity){
-                        //if so update largestSoFar to currentRow
-                        lowestSoFar = currentRow;
+            if (humidity == "N/A"){
+                lowestSoFar = lowestSoFar;
+            }
                         
-                    }
+            
+            if (!humidity.equals("N/A")) {
+                
+                double currentHumidity = Double.parseDouble(humidity);
+                double lowestHumidity = Double.parseDouble(lowestSoFar.get("Humidity"));
+                // check if currentRow temp > largestSoFar
+                
+                
+                
+            
+                if (currentHumidity < lowestHumidity){
+                    //if so update largestSoFar to currentRow
+                    lowestSoFar = currentRow;
+                        
+                    
                 }
                 
             }
@@ -189,7 +198,7 @@ public class Part1 {
     }
     
     public void testAverageTemperatureInFile() {
-        FileResource fr = new FileResource("data/2014/weather-2014-01-20.csv");
+        FileResource fr = new FileResource("data/2014/weather-2014-06-01.csv");
         double aveTemp = averageTemperatureInFile(fr.getCSVParser());
         
         System.out.println("average temperature in file is " + aveTemp);
@@ -212,7 +221,7 @@ public class Part1 {
     }
     
     public void testAverageTemperatureWithHighHumidityInFile() {
-        FileResource fr = new FileResource("data/2014/weather-2014-03-20.csv");
+        FileResource fr = new FileResource("data/2014/weather-2014-03-30.csv");
         double aveTemp = averageTemperatureWithHighHumidityInFile(fr.getCSVParser(), 80);
         
         if (aveTemp == 0) {
