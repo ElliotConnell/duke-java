@@ -208,16 +208,16 @@ public class Part1 {
     
     public int countCGT (String dna) {
         int count = 0;
-        int pos = dna.indexOf("CGT");
+        int pos = dna.indexOf("CTG");
         while(pos !=-1 && pos<dna.length()) {
             count += 1;
-            pos=dna.indexOf("CGT", pos+3);
+            pos=dna.indexOf("CTG", pos+3);
         }
         return count;
     }
     
     public void testCount() {
-        FileResource fr = new FileResource("brca1line.fa");
+        FileResource fr = new FileResource("GRch38dnapart.fa");
         String dna1 = fr.asString();
         dna1 = dna1.toUpperCase();
         
@@ -270,6 +270,7 @@ public class Part1 {
         
         System.out.println("longest gene = ");
         System.out.println(longestGene);
+        System.out.println(longestGene.length());
     }
     
     public void testProcessGenes() {
