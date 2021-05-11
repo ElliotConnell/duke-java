@@ -30,7 +30,7 @@ public class Part1 {
     public String findGene (String dna, int startIndex) {
         dna = dna.toUpperCase();
         int firstIndex = dna.indexOf("ATG", startIndex);
-               
+        int strandLength = dna.length();     
         
         if (firstIndex == -1) {
             return "";
@@ -54,6 +54,11 @@ public class Part1 {
         }
          
         if (minIndex == -1) {
+            return "";
+        }
+        
+        if (minIndex == strandLength){
+            //startIndex = startIndex + 1;
             return "";
         }
         
@@ -146,14 +151,17 @@ public class Part1 {
         System.out.println("Testing getAllGenes on brca1line.fa");
         //printAllGenes(dna);
         StorageResource genes = getAllGenes(dna);
+        int count = 0;
         for (String g: genes.data()) {
            System.out.println(g);
+           count += 1;
         }
         
+        System.out.println(count);
     }
     
     public void test() {
-        FileResource fr = new FileResource("brca1line.fa");
+        FileResource fr = new FileResource("GRch38dnapart.fa");
         String dna2 = fr.asString();
         
         testOn(dna2);
@@ -219,19 +227,55 @@ public class Part1 {
         
     }
     
-    public void processGenes(StorageResource sr) {
+    public void processGenes(String sr) {
+        StorageResource genes = getAllGenes(sr);
         // print all strings in sr that are longer than 9 characters
-        
+        int count = 0;
+        for (String g: genes.data()) {
+            
+            if (g.length() > 60) {
+                System.out.println(g);
+                count += 1;
+            }
+            
+        }
         //print the number of Strings in sr that longer than 9 characters
+        System.out.println("No. of strings longer than 60 characters = " + count);
         
         //print the strings in sr whose C-G ratio is higher than 0.35
-        
+        int cgCount = 0;
+        for (String g: genes.data()) {
+            float cgRatio = cgRatio(g);
+            if (cgRatio > 0.35) {
+                System.out.println(g);
+                cgCount += 1;
+            }
+            
+        }
+                
         // print the number of strings in sr whose cg ratio is higher than 0.35
-        
+        System.out.println("No. of strings with cgRatios higher than 0.35 = " + cgCount);
         // print the length of the longest gene in sr
+        String longestGene = "";
+        for (String g: genes.data()) {
+            if (longestGene == "") {
+                longestGene = g;
+            }
+            
+            if (longestGene.length() < g.length()) {
+                longestGene = g;
+            }
+            
+        }
+        
+        System.out.println("longest gene = ");
+        System.out.println(longestGene);
     }
     
     public void testProcessGenes() {
+        FileResource fr = new FileResource("GRch38dnapart.fa");
+        String dna = fr.asString();
+        processGenes(dna);
         
     }
 }
