@@ -11,10 +11,10 @@ import edu.duke.*;
 
 public class Part1 {
     
-    public int findStopCodon (String dnaStr, int startIndex, String stopCodon) {
-        int currIndex = dnaStr.indexOf(stopCodon, startIndex+3);
+    public int findStopCodon (String dnaStr, int newIndex, String stopCodon) {
+        int currIndex = dnaStr.indexOf(stopCodon, newIndex+3);
         while (currIndex != -1) {
-            int diff = currIndex - startIndex;
+            int diff = currIndex - newIndex;
             if (diff % 3 == 0) {
                 return currIndex;
             }
@@ -29,15 +29,15 @@ public class Part1 {
     
     public String findGene (String dna, int startIndex) {
         dna = dna.toUpperCase();
-        startIndex = dna.indexOf("ATG", startIndex);
+        int firstIndex = dna.indexOf("ATG", startIndex);
                
         
-        if (startIndex == -1) {
+        if (firstIndex == -1) {
             return "";
         }
-        int taaIndex = findStopCodon(dna, startIndex, "TAA");
-        int tagIndex = findStopCodon(dna, startIndex, "TAG");
-        int tgaIndex = findStopCodon(dna, startIndex, "TGA");
+        int taaIndex = findStopCodon(dna, firstIndex, "TAA");
+        int tagIndex = findStopCodon(dna, firstIndex, "TAG");
+        int tgaIndex = findStopCodon(dna, firstIndex, "TGA");
         //int temp = Math.min(taaIndex, tagIndex);
         
         
@@ -58,8 +58,9 @@ public class Part1 {
         }
         
     
-        String gene = dna.substring(startIndex, minIndex + 3);
-        startIndex = dna.indexOf(gene, startIndex) + gene.length();
+        String gene = dna.substring(firstIndex, minIndex + 3);
+        int length = gene.length();
+        firstIndex = firstIndex + length ;
      
         return gene;
         
@@ -94,6 +95,7 @@ public class Part1 {
     }
     
     public void printAllGenes(String dna) {
+        dna = dna.toUpperCase();
         int startIndex = 0;
         
         
@@ -105,38 +107,35 @@ public class Part1 {
                 break;
             }
             
+                       
             
-                        
-            if (startIndex == -1){
-                break;
-            }
+            int length = currentGene.length();
             
-            
-            startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+            startIndex = dna.indexOf(currentGene, startIndex)  + length;
             System.out.println(currentGene);
             
             
         }
     }
     
-    public StorageResource getAllGenes(String dna, int startIndex) {
+    public StorageResource getAllGenes(String dna) {
         // create an empty StorageResource, call it geneList
         StorageResource geneList = new  StorageResource();
+        dna = dna.toUpperCase();
+        int startIndex = 0;
         
-        startIndex = 0;
-        
-        while (startIndex <= dna.length()) {
-            String gene = findGene(dna, startIndex);
+        while (true) {
+            String currentGene = findGene(dna, startIndex);
             
-            if (gene.isEmpty()) {
+            if (currentGene.isEmpty()) {
                 break;
             }
             
             // add gene to genelist
-            geneList.add(gene);
+            geneList.add(currentGene);
             
             // Set startIndex to just past the end of currentgene
-            startIndex = (dna.indexOf(gene, startIndex) + gene.length());
+            startIndex = (dna.indexOf(currentGene, startIndex) + currentGene.length());
             
         }
         return geneList;
@@ -144,12 +143,12 @@ public class Part1 {
     
     public void testOn (String dna) {
 
-        System.out.println("Testing getAllGenes on " + dna);
-        printAllGenes(dna);
-        //StorageResource genes = printAllGenes(dna);
-        //for (String g: genes.data()) {
-        //    System.out.println(g);
-        //}
+        System.out.println("Testing getAllGenes on brca1line.fa");
+        //printAllGenes(dna);
+        StorageResource genes = getAllGenes(dna);
+        for (String g: genes.data()) {
+           System.out.println(g);
+        }
         
     }
     
@@ -157,11 +156,11 @@ public class Part1 {
         FileResource fr = new FileResource("brca1line.fa");
         String dna2 = fr.asString();
         
-        //testOn(dna2);
+        testOn(dna2);
         //testOn("");
         //testOn("ATGATCATAAGAAGATAATAGAGGGCCATGTAA");
         //testOn("nonCodingDNAxxxMyGeneATGmyGenexTAAxxGeneATGTAACATGTAAATGCendTAATAAnonCodingDNAxTAGxTGA");
-        testOn("oneAtGMyGeneOneAATGGGGTAATGATAGAACCCGGYGGGGTAGGGCTGCCCATGendOneTAAnonCodingDnaTAGTGAZZZtaaTwoATGMyGeneTwoCATGGGGTAATGATAGCCatgCCCFalseStartTAATGATGendTwoTAGnonCodingDNATAACCCThreeATGMyGeneThreeATGGGGTAATGATAGATGccendThreeTAAnonCodingDNAccTAAfalsecccFourATGMyGeneFourATGGGGTAATGATAGCendFourTAGnonCodingdnaFiveAtgMyGeneFiveATGGGGTAATGATAGCendFiveTGAnonCodingdnaSixATGmyGeneSixATATGGGGTAATGATAGAendSixTAAnoncodingdnaSevenATGMyGeneSevenCcATGGGGTAATGATAGendSeventaAnoncodingdnaEightATGmyGeneEightATGGGGTAATGATAGGGendEighttaAnoncodingdnaCcccWrongtgaCtaaCtagCCcgNineATgmyGeneNineATGGGGTAATGATAGTaaAendNineTAAnonCodingDnaCcccTenATGmyGeneTenGATGGGGTAATGATAGCCHasFakeATGFAKEatgcendTentaanonCodingDnaCtagCtganonCodingDnaxxxElevenATGmyGeneElevenCATGGGGTAATGATAGTAAxxGeneATGTAACATGTAAATGCendElevenTAAnonCodingDnaxTAGxtgaTwelveATGmyGeneTwelveCATGGGGTAATGATAGCTheLastGeneIsATGTAGendTwelvetgaATGTAG");
+        //testOn("oneAtGMyGeneOneAATGGGGTAATGATAGAACCCGGYGGGGTAGGGCTGCCCATGendOneTAAnonCodingDnaTAGTGAZZZtaaTwoATGMyGeneTwoCATGGGGTAATGATAGCCatgCCCFalseStartTAATGATGendTwoTAGnonCodingDNATAACCCThreeATGMyGeneThreeATGGGGTAATGATAGATGccendThreeTAAnonCodingDNAccTAAfalsecccFourATGMyGeneFourATGGGGTAATGATAGCendFourTAGnonCodingdnaFiveAtgMyGeneFiveATGGGGTAATGATAGCendFiveTGAnonCodingdnaSixATGmyGeneSixATATGGGGTAATGATAGAendSixTAAnoncodingdnaSevenATGMyGeneSevenCcATGGGGTAATGATAGendSeventaAnoncodingdnaEightATGmyGeneEightATGGGGTAATGATAGGGendEighttaAnoncodingdnaCcccWrongtgaCtaaCtagCCcgNineATgmyGeneNineATGGGGTAATGATAGTaaAendNineTAAnonCodingDnaCcccTenATGmyGeneTenGATGGGGTAATGATAGCCHasFakeATGFAKEatgcendTentaanonCodingDnaCtagCtganonCodingDnaxxxElevenATGmyGeneElevenCATGGGGTAATGATAGTAAxxGeneATGTAACATGTAAATGCendElevenTAAnonCodingDnaxTAGxtgaTwelveATGmyGeneTwelveCATGGGGTAATGATAGCTheLastGeneIsATGTAGendTwelvetgaATGTAG");
         
     }
     
