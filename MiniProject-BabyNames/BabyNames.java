@@ -78,5 +78,46 @@ public class BabyNames {
         result = getRank(2014, "Noah", "F");
         System.out.println("names rank = " + result);
     }
+    
+    public String getName(int year, int rank, String gender) {
+        //set file resource with file from name given
+        FileResource fr = new FileResource("testing/yob" + year + "short.csv");
+        // set rank counter
+        int rankCount = 0;
+        String name = "";
+        boolean found = false;
+        
+        // loop through lines of csv
+        for (CSVRecord rec : fr.getCSVParser(false)) {
+            
+            //String recName = rec.get(0);
+            String recGen = rec.get(1);
+            
+            if (recGen.equals(gender)) {
+                rankCount += 1;
+                if (rankCount == rank) {
+                    name = rec.get(0);
+                    found = true;
+                }
+            }
+        }
+        if (found == false) {
+            name = "no name";
+        }
+        
+        return name;
+    }
+    
+    public void testGetName() {
+        
+        String result = getName(2014, 1, "F");
+        System.out.println("name at nominated rank = " + result);
+        
+        result = getName(2014, 3, "M");
+        System.out.println("name at nominated rank = " + result);
+        
+        result = getName(2014, 6, "F");
+        System.out.println("name at nominated rank = " + result);
+    }
 
 }
