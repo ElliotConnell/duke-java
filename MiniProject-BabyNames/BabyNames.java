@@ -14,6 +14,8 @@ public class BabyNames {
     
     public void totalBirths (FileResource fr) {
         int totalBirths = 0;
+        int boysCount = 0;
+        int girlsCount = 0;
         int totalBoys = 0;
         int totalGirls = 0;
         
@@ -22,25 +24,29 @@ public class BabyNames {
             totalBirths += numBorn;
             if (rec.get(1).equals("M")) {
                 totalBoys += numBorn;
+                boysCount += 1;
             }
-            else {
+            if (rec.get(1).equals("F")){
                 totalGirls += numBorn;
+                girlsCount += 1;
             }
         }
         System.out.println("total births = " + totalBirths);
         System.out.println("total boys = " + totalBoys);
+        System.out.println("total number of boys names = " + boysCount);
         System.out.println("total girls = " + totalGirls);
+        System.out.println("total number of girls names = " + girlsCount);
         
     }
     
     public void testTotalBirths() {
-        FileResource fr = new FileResource("testing/yob2014short.csv");
+        FileResource fr = new FileResource("us_babynames_by_year/yob1905.csv");
         totalBirths(fr);
     }
     
     public int getRank(int year, String name, String gender) {
         // set fileresource with file from year givin
-        FileResource fr = new FileResource("testing/yob" + year + "short.csv");
+        FileResource fr = new FileResource("us_babynames_by_year/yob" + year + ".csv");
         // set rank counter
         int rank = 0;
         boolean found = false;
@@ -69,19 +75,19 @@ public class BabyNames {
     
     public void testGetRank() {
         
-        int result = getRank(2014, "Sophia", "F");
-        System.out.println("names rank = " + result);
+        int result = getRank(1960, "Emily", "F");
+        System.out.println("Emily names rank = " + result);
         
-        result = getRank(2014, "Noah", "M");
-        System.out.println("names rank = " + result);
+        result = getRank(1971, "Frank", "M");
+        System.out.println("Frank names rank = " + result);
         
-        result = getRank(2014, "Noah", "F");
-        System.out.println("names rank = " + result);
+        //result = getRank(2014, "Noah", "F");
+        //System.out.println("names rank = " + result);
     }
     
     public String getName(int year, int rank, String gender) {
         //set file resource with file from name given
-        FileResource fr = new FileResource("testing/yob" + year + "short.csv");
+        FileResource fr = new FileResource("us_babynames_by_year/yob" + year + ".csv");
         // set rank counter
         int rankCount = 0;
         String name = "";
@@ -110,14 +116,14 @@ public class BabyNames {
     
     public void testGetName() {
         
-        String result = getName(2014, 1, "F");
-        System.out.println("name at nominated rank = " + result);
+        String result = getName(1980, 350, "F");
+        System.out.println("girls name at nominated rank = " + result);
         
-        result = getName(2014, 3, "M");
-        System.out.println("name at nominated rank = " + result);
+        result = getName(1982, 450, "M");
+        System.out.println("boys name at nominated rank = " + result);
         
-        result = getName(2014, 6, "F");
-        System.out.println("name at nominated rank = " + result);
+        //result = getName(2014, 6, "F");
+        //System.out.println("name at nominated rank = " + result);
     }
     
     public void whatIsNameInYear(String name, int year, int newYear, String gender) {
@@ -138,8 +144,8 @@ public class BabyNames {
     
     public int yearOfHighestRank(String name, String gender) {
         DirectoryResource dr = new DirectoryResource();
-        int highestYear = 0;
-        int highestRank = 0;
+        int highestYear = 1850;
+        int highestRank = 999999999;
         
         for (File f : dr.selectedFiles()) {
             String fileName = f.getName();
@@ -153,22 +159,24 @@ public class BabyNames {
                 highestYear = year;
             }
             
-            if (rank < highestRank) {
+            if ((rank < highestRank) && (rank != -1)) {
                 highestRank = rank;
                 highestYear = year;
             }
             
+            if (rank == -1) {
+                continue;
+            }
+            
         }
         
-        if (highestYear == 0) {
-            return -1;
-        }
+        
         
         return highestYear;
     }
     
     public void testYearOfHighestRank() {
-        int result = yearOfHighestRank("Mason", "M");
+        int result = yearOfHighestRank("Mich", "M");
         System.out.println("year of highest rank = " + result);
     }
     
@@ -205,16 +213,16 @@ public class BabyNames {
     
        
     public void testGetAverageRank() {
-        double result = getAverageRank("Mason", "M");
-        System.out.println("average rank = " + result);
+        double result = getAverageRank("Susan", "F");
+        System.out.println("average rank of Susan = " + result);
         
-        result = getAverageRank("Jacob", "M");
-        System.out.println("average rank = " + result);
+        result = getAverageRank("Robert", "M");
+        System.out.println("average rank of Robert = " + result);
     }
 
     
     public int getTotalBirthsRankedHigher(int year, String name, String gender) {
-        FileResource fr = new FileResource("testing/yob" + year + "short.csv");
+        FileResource fr = new FileResource("us_babynames_by_year/yob" + year + ".csv");
         int totalBirths = 0;
         boolean found = false;
         
@@ -223,7 +231,7 @@ public class BabyNames {
             String recGen = rec.get(1);
             int births = Integer.parseInt(rec.get(2));
             
-            if (recName.equals(name)){
+            if (recName.equals(name) && recGen.equals(gender)){
                 found = true;
                 break;
             }
@@ -244,8 +252,10 @@ public class BabyNames {
     
     
     public void testGetTotalBirthsRankedHigher() {
-        int result = getTotalBirthsRankedHigher(2012, "Ethan", "M");
-        System.out.println("totals births ranked higher = " + result);
+        int result = getTotalBirthsRankedHigher(1990, "Emily", "F");
+        System.out.println("totals births ranked higher than Emily in 1990 = " + result);
         
+        result = getTotalBirthsRankedHigher(1990, "Drew", "M");
+        System.out.println("totals births ranked higher than Drew in 1990 = " + result);
     }
 }
