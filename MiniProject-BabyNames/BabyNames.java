@@ -211,4 +211,41 @@ public class BabyNames {
         result = getAverageRank("Jacob", "M");
         System.out.println("average rank = " + result);
     }
+
+    
+    public int getTotalBirthsRankedHigher(int year, String name, String gender) {
+        FileResource fr = new FileResource("testing/yob" + year + "short.csv");
+        int totalBirths = 0;
+        boolean found = false;
+        
+        for (CSVRecord rec : fr.getCSVParser(false)) {
+            String recName = rec.get(0);
+            String recGen = rec.get(1);
+            int births = Integer.parseInt(rec.get(2));
+            
+            if (recName.equals(name)){
+                found = true;
+                break;
+            }
+            
+            if (recGen.equals(gender)) {
+                totalBirths += births;
+            }    
+        }
+        
+        if (found == false) {
+            System.out.println("name not found");
+        }
+            
+        return totalBirths;    
+            
+            
+    }
+    
+    
+    public void testGetTotalBirthsRankedHigher() {
+        int result = getTotalBirthsRankedHigher(2012, "Ethan", "M");
+        System.out.println("totals births ranked higher = " + result);
+        
+    }
 }
