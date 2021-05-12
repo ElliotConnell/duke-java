@@ -135,5 +135,41 @@ public class BabyNames {
          System.out.println(name + " born in year " + year + " would be " + newName + " if they were born in " + newYear);
         
     }
+    
+    public int yearOfHighestRank(String name, String gender) {
+        DirectoryResource dr = new DirectoryResource();
+        int highestYear = 0;
+        int highestRank = 0;
+        
+        for (File f : dr.selectedFiles()) {
+            String fileName = f.getName();
+            String yearString = fileName.substring(3, 7);
+            int year = Integer.parseInt(yearString);
+            
+            int rank = getRank(year, name, gender);
+            
+            if (highestRank == 0) {
+                highestRank = rank;
+                highestYear = year;
+            }
+            
+            if (rank < highestRank) {
+                highestRank = rank;
+                highestYear = year;
+            }
+            
+        }
+        
+        if (highestYear == 0) {
+            return -1;
+        }
+        
+        return highestYear;
+    }
+    
+    public void testYearOfHighestRank() {
+        int result = yearOfHighestRank("Mason", "M");
+        System.out.println("year of highest rank = " + result);
+    }
 
 }
