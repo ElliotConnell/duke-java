@@ -119,5 +119,21 @@ public class BabyNames {
         result = getName(2014, 6, "F");
         System.out.println("name at nominated rank = " + result);
     }
+    
+    public void whatIsNameInYear(String name, int year, int newYear, String gender) {
+         String newName = "";
+         int rank = getRank(year, name, gender);
+         
+         if (rank != -1) {
+             newName = getName(newYear, rank, gender);
+         }
+         
+         else {
+             newName = "no one";
+         }
+            
+         System.out.println(name + " born in year " + year + " would be " + newName + " if they were born in " + newYear);
+        
+    }
 
 }
