@@ -2,6 +2,10 @@
 comment0.target=BabyNames
 comment1.params=fr
 comment1.target=void\ totalBirths(edu.duke.FileResource)
+comment10.params=name\ gender
+comment10.target=double\ getAverageRank(java.lang.String,\ java.lang.String)
+comment11.params=
+comment11.target=void\ testGetAverageRank()
 comment2.params=
 comment2.target=void\ testTotalBirths()
 comment3.params=year\ name\ gender
@@ -18,4 +22,4 @@ comment8.params=name\ gender
 comment8.target=int\ yearOfHighestRank(java.lang.String,\ java.lang.String)
 comment9.params=
 comment9.target=void\ testYearOfHighestRank()
-numComments=10
+numComments=12

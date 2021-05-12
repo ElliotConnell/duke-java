@@ -171,5 +171,44 @@ public class BabyNames {
         int result = yearOfHighestRank("Mason", "M");
         System.out.println("year of highest rank = " + result);
     }
-
+    
+    public double getAverageRank(String name, String gender) {
+        DirectoryResource dr = new DirectoryResource();
+        int totalRank = 0;
+        int count = 0;
+        
+         for (File f : dr.selectedFiles()) {
+            String fileName = f.getName();
+            String yearString = fileName.substring(3, 7);
+            int year = Integer.parseInt(yearString);
+            
+            int rank = getRank(year, name, gender);
+            
+            
+            if (rank != -1){
+                totalRank += rank;
+                count += 1;
+            }
+            
+        }
+        
+        if (totalRank == 0) {
+            return -1;
+        }
+        
+        double doubleTotalRank = totalRank;
+        double doubleCount = count;
+        
+        
+        return doubleTotalRank/doubleCount;
+    }
+    
+       
+    public void testGetAverageRank() {
+        double result = getAverageRank("Mason", "M");
+        System.out.println("average rank = " + result);
+        
+        result = getAverageRank("Jacob", "M");
+        System.out.println("average rank = " + result);
+    }
 }
