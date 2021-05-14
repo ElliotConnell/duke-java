@@ -42,7 +42,12 @@ public class BatchInversions {
             ImageResource inImage = new ImageResource(f);
             ImageResource inverted = makeInversions(inImage);
             
+            String fname = inImage.getFileName();
+            String newName = "images/" + "inverted-" + fname;
+            inverted.setFileName(newName);
+            
             inverted.draw();
+            inverted.save();
         }
     }
 
