@@ -31,8 +31,13 @@ public class GrayScaleConvertor {
         }
         // outImage is your answer
         return outImage;    
-        
+            
+    }
     
+    public void testGray() {
+        ImageResource ir = new ImageResource();
+        ImageResource gray = makeGray(ir);
+        gray.draw();
     }
 
 }
