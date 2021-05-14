@@ -35,5 +35,15 @@ public class BatchInversions {
         return outImage;
         
     }
+    
+    public void selectAndConvert() {
+        DirectoryResource dr = new DirectoryResource();
+        for (File f : dr.selectedFiles()) {
+            ImageResource inImage = new ImageResource(f);
+            ImageResource inverted = makeInversions(inImage);
+            
+            inverted.draw();
+        }
+    }
 
 }
