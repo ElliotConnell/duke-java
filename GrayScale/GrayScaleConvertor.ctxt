@@ -3,5 +3,5 @@ comment0.target=GrayScaleConvertor
 comment1.params=inImage
 comment1.target=edu.duke.ImageResource\ makeGray(edu.duke.ImageResource)
 comment2.params=
-comment2.target=void\ testGray()
+comment2.target=void\ selectAndConvert()
 numComments=3
