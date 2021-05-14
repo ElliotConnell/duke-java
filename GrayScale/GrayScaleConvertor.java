@@ -41,7 +41,13 @@ public class GrayScaleConvertor {
         for (File f: dr.selectedFiles()) {
             ImageResource inImage = new ImageResource(f);
             ImageResource gray = makeGray(inImage);
+            
+            String fname = inImage.getFileName();
+            String newName = "images/" + "gray-" + fname;
+            gray.setFileName(newName);
+            
             gray.draw();
+            gray.save();
         }
     }
 
