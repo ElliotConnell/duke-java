@@ -25,5 +25,13 @@ public class WordPlay {
        return false;       
     }
     
+    public void testIsVowel() {
+        boolean result = isVowel('F');
+        System.out.println(result);
+        
+        result = isVowel('a');
+        System.out.println(result);
+    }
+    
 
 }

@@ -2,4 +2,6 @@
 comment0.target=WordPlay
 comment1.params=ch
 comment1.target=boolean\ isVowel(char)
-numComments=2
+comment2.params=
+comment2.target=void\ testIsVowel()
+numComments=3
