@@ -33,5 +33,30 @@ public class WordPlay {
         System.out.println(result);
     }
     
+    public String replaceVowels(String phrase, char ch) {
+        //create new string
+        String newStr = "";
+        
+        // loop through charaters in string
+        for (int i=0; i<phrase.length(); i++){
+            // select character in the string
+            char stringChar = phrase.charAt(i);
+            char lowerChar = Character.toLowerCase(stringChar);
+            if (isVowel(lowerChar) == true){
+                newStr = newStr + '*';
+            }
+            else {
+                newStr = newStr + stringChar;
+            }
+        }
+        
+        return newStr;
+    }
+    
+    public void testReplaceVowels(){
+        String result = replaceVowels("Hello World", '*');
+        System.out.println(result);
+    }
+    
 
 }
