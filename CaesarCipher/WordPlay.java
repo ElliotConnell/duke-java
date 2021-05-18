@@ -58,5 +58,41 @@ public class WordPlay {
         System.out.println(result);
     }
     
+    public String emphasize(String phrase, char ch) {
+        // create new string
+        String empStr = "";
+        
+        // loop through characters in string
+        for (int i=0; i<phrase.length(); i++){
+            //select character in string
+            char stringChar = phrase.charAt(i);
+            char lowerChar = Character.toLowerCase(stringChar);
+            //check to to see if ch matches the character
+            if (ch == lowerChar) {
+                if (i % 2 == 1) {
+                    empStr = empStr + '+';
+                }
+                else {
+                    empStr = empStr + '*';
+                }
+            }
+            else {
+                empStr = empStr + stringChar;
+            }
+            
+        }
+        
+        return empStr;
+    }
+    
+    public void testEmphasize() {
+        String result = emphasize("dna ctgaaactga",'a');
+        System.out.println(result);
+        
+        result = emphasize("Mary Bella Abracadabra", 'a');
+        System.out.println(result);
+        
+    }
+    
 
 }
