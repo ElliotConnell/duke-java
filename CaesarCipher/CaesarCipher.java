@@ -52,10 +52,13 @@ public class CaesarCipher {
         //String message = encrypt("FIRST LEGION ATTACK EAST FLANK!", 23);
         //System.out.println(message);
         
-        String message = encrypt("First Legion", 23);
-        System.out.println(message);
+        //String message = encrypt("First Legion", 23);
+        //System.out.println(message);
         
-        message = encrypt("First Legion", 17);
+        //message = encrypt("First Legion", 17);
+        //System.out.println(message);
+        
+        String message = encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15);
         System.out.println(message);
         
         //FileResource fr = new FileResource();
@@ -108,7 +111,7 @@ public class CaesarCipher {
     }
     
     public void testEncryptTwoKeys() {
-        String message = encryptTwoKeys("First Legion", 23, 17);
+        String message = encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21);
         System.out.println(message);
         }
 
