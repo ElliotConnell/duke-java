@@ -63,5 +63,53 @@ public class CaesarCipher {
         //String encrypted = encrypt(message, 23);
         //System.out.println("key is " + key + "\n" + encrypted);
     }
+    
+    public String encryptTwoKeys(String input, int key1, int key2) {
+        // make a stringbuilder with the message (encrypted);
+        StringBuilder encrypted = new StringBuilder(input);
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // compute the shifted alphabet
+        String shiftedAlphabet1 = alphabet.substring(key1) + alphabet.substring(0, key1);
+        String shiftedAlphabet2 = alphabet.substring(key2) + alphabet.substring(0, key2);
+        
+        for (int i = 0; i < encrypted.length(); i++) {
+            // look at the ith character of encrypted (call it currChar)
+            char currChar = encrypted.charAt(i);
+            char upperChar = Character.toUpperCase(currChar);
+           
+            // find the index of curChar in the alphabet (call it idx)
+            int idx = alphabet.indexOf(upperChar);
+            // if currChar is in the alphabet
+            if (idx != -1) {
+                char newChar = '*';
+                
+                if (i % 2 == 0) {
+                    newChar = shiftedAlphabet1.charAt(idx);
+                }
+                if (i % 2 == 1) {
+                    newChar = shiftedAlphabet2.charAt(idx);
+                }
+                                                
+                // add check for capatalisation
+                if (Character.isUpperCase(currChar) == true){
+                    // replace the ith character of encrypted with newChar
+                    encrypted.setCharAt(i, newChar); 
+                }
+                else {
+                    newChar = Character.toLowerCase(newChar);
+                    encrypted.setCharAt(i, newChar);
+                }
+            }
+            // otherwise do nothing
+        }
+        // answer is the string inside of encrypted
+        return encrypted.toString();
+        
+    }
+    
+    public void testEncryptTwoKeys() {
+        String message = encryptTwoKeys("First Legion", 23, 17);
+        System.out.println(message);
+        }
 
 }
