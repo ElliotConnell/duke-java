@@ -18,7 +18,21 @@ import java.lang.*;
 public class WordLengths {
     
     public void countWordLengths( FileResource resource, int [] counts) {
+        // create new int array from counts
         
+        // look into file 
+        // for each word in file. start the loop 
+            
+            // set the counter to 0
+            
+            // if the character is a letter add one to the counter
+            
+            // if the character is not a letter
+                // look at the next character
+                
+                //if next character is a space. go to next word
+                
+                // if next character is a letter. add one to the counter
     }
 
 }
