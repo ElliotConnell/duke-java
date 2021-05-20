@@ -47,12 +47,33 @@ public class WordLengths {
                 
     }
     
+    public int indexOfMax(int[] values) {
+        int max = 0;
+        int index = 0;
+        
+        for (int i=0; i < values.length; i++) {
+            if (max < values[i]) {
+                max = values[i];
+                index = i;
+            }
+        }
+        
+        return index;      
+        
+    }
+    
+    
     public void testCountWordLengths() {
         FileResource resource = new FileResource();
         int[] counts = new int[31];
         
         countWordLengths(resource, counts);
-                
+        
+        int result = indexOfMax(counts);
+        
+        System.out.println("the no. of words with the highest count is " + result);
+        
+                        
     }
 }
     
