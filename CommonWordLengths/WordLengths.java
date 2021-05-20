@@ -38,7 +38,12 @@ public class WordLengths {
                 
             counts[len] += 1;
         }
-                
+        
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] != 0) {
+                System.out.println("for length " + i + ", no. of words = " + counts[i]);
+            }
+        }
                 
     }
     
@@ -47,13 +52,7 @@ public class WordLengths {
         int[] counts = new int[31];
         
         countWordLengths(resource, counts);
-        
-        for (int i = 0; i < counts.length; i++) {
-            if (counts[i] != 0) {
-                System.out.println("for length " + i + ", no. of words = " + counts[i]);
-            }
-        }
-        
+                
     }
 }
     
