@@ -17,22 +17,45 @@ import java.lang.*;
 
 public class WordLengths {
     
-    public void countWordLengths( FileResource resource, int [] counts) {
+    public void countWordLengths( FileResource resource, int[] counts) {
         // create new int array from counts
+        // set counter
         
         // look into file 
-        // for each word in file. start the loop 
+        
+        // for each word in file. start the loop
+        for (String word: resource.words()) {
+            int len = word.length();
+            boolean firstChar = Character.isLetter(word.charAt(0));
+            boolean lastChar = Character.isLetter(word.charAt(len-1));
+            if (firstChar == false){
+                len = len - 1;
+            }
             
-            // set the counter to 0
-            
-            // if the character is a letter add one to the counter
-            
-            // if the character is not a letter
-                // look at the next character
+            if (lastChar == false){
+                len = len -1;
+            }
                 
-                //if next character is a space. go to next word
+            counts[len] += 1;
+        }
                 
-                // if next character is a letter. add one to the counter
+                
     }
-
+    
+    public void testCountWordLengths() {
+        FileResource resource = new FileResource();
+        int[] counts = new int[31];
+        
+        countWordLengths(resource, counts);
+        
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] != 0) {
+                System.out.println("for length " + i + ", no. of words = " + counts[i]);
+            }
+        }
+        
+    }
 }
+    
+
+
