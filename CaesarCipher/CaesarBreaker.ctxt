@@ -7,4 +7,6 @@ comment2.params=vals
 comment2.target=int\ maxIndex(int[])
 comment3.params=encrypted
 comment3.target=java.lang.String\ decrypt(java.lang.String)
-numComments=4
+comment4.params=
+comment4.target=void\ testDecrypt()
+numComments=5

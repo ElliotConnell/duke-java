@@ -44,5 +44,15 @@ public class CaesarBreaker {
                 
         return cc.encrypt(encrypted, 26 - dkey);
     }
+    
+    public void testDecrypt() {
+        
+        String result = decrypt("Cfopq Ibbbbbdflk");
+        System.out.println(result);
+        
+        result = decrypt("Wzijk Cvvvvvxzfe");
+        System.out.println(result);
+        
+    }
 
 }
