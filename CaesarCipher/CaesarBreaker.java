@@ -124,6 +124,7 @@ public class CaesarBreaker {
     public void testDecryptTwoKeys(){
         FileResource fr = new FileResource();
         String message = fr.asString();
+        //String message = "Top ncmy qkff vi vguv vbg ycpx";
         String result = decryptTwoKeys(message);
         System.out.println(result);
     }

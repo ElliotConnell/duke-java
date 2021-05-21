@@ -111,7 +111,10 @@ public class CaesarCipher {
     }
     
     public void testEncryptTwoKeys() {
-        String message = encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21);
+        //String message = encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21);
+        //System.out.println(message);
+        
+        String message = encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx", 2, 10);
         System.out.println(message);
         }
 
