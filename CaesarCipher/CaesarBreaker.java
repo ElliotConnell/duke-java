@@ -12,15 +12,22 @@ public class CaesarBreaker {
         return 0;    
     }
     
-    public int maxIndex() {
+    public int maxIndex(int[]  vals) {
         return 0;
         
     }
     
     public String decrypt(String encrypted) {
         CaesarCipher cc = new CaesarCipher();
+        int[] freqs = countLetters(encrypted);
+        int maxDex = maxIndex(freqs);
+        int dkey = maxDex - 4;
         
-        return "";
+        if (maxDex < 4) {
+            dkey = 26 - (4-maxDex);
+        }
+                
+        return cc.encrypt(encrypted, 26 - dkey);
     }
 
 }
