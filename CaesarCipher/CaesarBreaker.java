@@ -13,8 +13,13 @@ public class CaesarBreaker {
     }
     
     public int maxIndex(int[]  vals) {
-        return 0;
-        
+        int maxDex = 0;
+        for (int k=0; k<vals.length; k++) {
+            if (vals[k] > vals[maxDex]) {
+                maxDex = k;
+            }
+        }
+        return maxDex;
     }
     
     public String decrypt(String encrypted) {
