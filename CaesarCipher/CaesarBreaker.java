@@ -54,5 +54,29 @@ public class CaesarBreaker {
         System.out.println(result);
         
     }
+    
+    public String halfOfString(String message, int start){
+        String halfStr = "";
+        
+        for (int i=start; i<message.length(); i++){
+            // select character in the string
+            char stringChar = message.charAt(i);
+            
+            if ((i + start) % 2 == 0){
+                halfStr = halfStr + stringChar;
+            }
+            
+        }
+        
+        return halfStr;
+    }
+    
+    public void testHalfOfString() {
+        String result = halfOfString("Qbkm Zgis", 0);
+        System.out.println(result);
+        
+        result = halfOfString("Qbkm Zgis", 1);
+        System.out.println(result);
+    }
 
 }
