@@ -13,4 +13,6 @@ comment5.params=message\ start
 comment5.target=java.lang.String\ halfOfString(java.lang.String,\ int)
 comment6.params=
 comment6.target=void\ testHalfOfString()
-numComments=7
+comment7.params=s
+comment7.target=int\ getKey(java.lang.String)
+numComments=8

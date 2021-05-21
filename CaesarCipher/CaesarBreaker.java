@@ -78,5 +78,13 @@ public class CaesarBreaker {
         result = halfOfString("Qbkm Zgis", 1);
         System.out.println(result);
     }
+    
+    public int getKey(String s) {
+        
+        int[] counts = countLetters(s);
+        int index = maxIndex(counts);
+        
+        return index;
+    }
 
 }
