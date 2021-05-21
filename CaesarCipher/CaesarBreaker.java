@@ -7,9 +7,19 @@
  */
 public class CaesarBreaker {
     
-    public int countLetters() {
+    public int[] countLetters(String message) {
+        String alph = "abcdefghijklmnopqrstuvwxyz";
+        int[] counts = new int[26];
         
-        return 0;    
+        for (int k=0; k<message.length(); k++){
+            char ch = Character.toLowerCase(message.charAt(k));
+            int dex = alph.indexOf(ch);
+            if(dex != -1){
+                counts[dex] += 1;
+            }
+        }
+        
+        return counts;    
     }
     
     public int maxIndex(int[]  vals) {
