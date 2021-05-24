@@ -14,12 +14,14 @@ public class CaesarCipher {
     // private fields for the alphabet and shiftedAlphabet
     private String alphabet;
     private String shiftedAlphabet;
+    private int mainKey;
     
     //write a constructor CaesarCipher that has one int parameter key. this method should 
     //initialise all the private fields of the class
     public CaesarCipher(int key) {
         alphabet = "ABCDEFGHIJKLEMNOPQRSTUVWXYZ";
         shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
+        mainKey = key;
     }
     
     public String encrypt(String input) {
@@ -35,5 +37,11 @@ public class CaesarCipher {
         return sb.toString();
     }
     
+
+    
+    public String decrypt(String input) {
+        CaesarCipher cc = new CaesarCipher(26 - mainKey);
+        return cc.encrypt(input);
+    }
 
 }
