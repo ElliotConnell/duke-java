@@ -26,5 +26,36 @@ public class CaesarCipherTwo {
         //mainKey1 = key1;
         //mainKey2 = key2;
     }
+    
+    public String encrypt(String input) {
+        StringBuilder sb = new StringBuilder(input);
+        
+        for (int i = 0; i < sb.length(); i++) {
+            char currChar = sb.charAt(i);
+            char upperChar = Character.toUpperCase(currChar);
+            int index = alphabet.indexOf(upperChar);
+            
+            if (index != -1) {
+                char newChar = '*';
+                
+                if (i % 2 == 0) {
+                    newChar= shiftedAlphabet1.charAt(index);
+                }
+                if (i % 2 == 1) {
+                    newChar= shiftedAlphabet2.charAt(index);
+                }
+                
+                if (Character.isUpperCase(currChar) == true){
+                    sb.setCharAt(i, newChar);
+                }
+                else{
+                    newChar = Character.toLowerCase(newChar);
+                    sb.setCharAt(i, newChar);
+                }
+            }
+        }
+        return sb.toString();
+    }
+    
 
 }
