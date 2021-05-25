@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=CaesarCipherTwo
+comment0.text=\r\n\ Write\ a\ description\ of\ CaesarCipherTwo\ here.\r\n\ In\ this\ assignment,\ you\ will\ put\ together\ the\ CaesarCipherTwo\ class\ that\ encrypts\ a\ message\ with\ two\ keys\ \r\n\ (the\ same\ way\ as\ the\ previous\ lesson\:\ key1\ is\ used\ to\ encrypt\ every\ other\ letter,\ starting\ with\ the\ first,\ \r\n\ and\ key2\ is\ used\ to\ encrypt\ every\ other\ letter,\ starting\ with\ the\ second),\ and\ also\ decrypts\ the\ same\ message.\ \r\n\ In\ addition\ you\ will\ create\ a\ second\ class,\ TestCaesarCipherTwo\ to\ test\ examples\ that\ use\ the\ CaesarCipherTwo\ \r\n\ class,\ including\ writing\ a\ method\ that\ will\ automatically\ decrypt\ an\ encrypted\ file\ by\ determining\ the\ two\ keys\r\n\ that\ were\ used\ to\ encrypt\ it.\ \r\n\ \r\n\ @author\ (Elliot\ Connell)\ \r\n\ @version\ (25/05/21)\r\n
+comment1.params=key1\ key2
+comment1.target=CaesarCipherTwo(int,\ int)
+numComments=2
