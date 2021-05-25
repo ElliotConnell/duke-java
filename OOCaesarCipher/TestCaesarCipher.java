@@ -45,9 +45,25 @@ public class TestCaesarCipher {
         CaesarCipher cc = new CaesarCipher(18);
         String encrypted = cc.encrypt(message);
         System.out.println(encrypted);
-        String decrypted = cc.decrypt(encrypted);
+        
+        String decrypted = breakCaesarCipher(encrypted);
         System.out.println(decrypted);
         
+    }
+    
+    public String breakCaesarCipher(String input) {
+        int[] counts = countLetters(input);
+        int index = maxIndex(counts);
+        int dkey = index - 4;
+        
+        if (index < 4) {
+            dkey = 26 - (4 - index);
+        }
+        
+        CaesarCipher cc = new CaesarCipher(26 - dkey);
+        String decrypted = cc.encrypt(input);
+        
+        return decrypted;
     }
     
 }
