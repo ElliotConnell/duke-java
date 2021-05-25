@@ -43,8 +43,11 @@ public class TestCaesarCipher {
         String message = fr.asString();
         
         CaesarCipher cc = new CaesarCipher(18);
-        String result = cc.encrypt(message);
-        System.out.println(result);
+        String encrypted = cc.encrypt(message);
+        System.out.println(encrypted);
+        String decrypted = cc.decrypt(encrypted);
+        System.out.println(decrypted);
+        
     }
     
 }
