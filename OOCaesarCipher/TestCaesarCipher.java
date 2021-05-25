@@ -5,6 +5,12 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
+
+import edu.duke.*;
+import org.apache.commons.csv.*;
+import java.io.*;
+import java.lang.*;
+
 public class TestCaesarCipher {
     
     public int[] countLetters(String message) {
@@ -31,5 +37,14 @@ public class TestCaesarCipher {
         }
         return maxDex;
     }
-
+    
+    public void simpleTests() {
+        FileResource fr = new FileResource();
+        String message = fr.asString();
+        
+        CaesarCipher cc = new CaesarCipher(18);
+        String result = cc.encrypt(message);
+        System.out.println(result);
+    }
+    
 }

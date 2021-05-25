@@ -19,7 +19,7 @@ public class CaesarCipher {
     //write a constructor CaesarCipher that has one int parameter key. this method should 
     //initialise all the private fields of the class
     public CaesarCipher(int key) {
-        alphabet = "ABCDEFGHIJKLEMNOPQRSTUVWXYZ";
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
         mainKey = key;
     }
@@ -28,10 +28,18 @@ public class CaesarCipher {
         StringBuilder sb = new StringBuilder(input);
         for (int i=0; i<sb.length(); i++) {
             char c = sb.charAt(i);
-            int idx = alphabet.indexOf(c);
+            char cUpper = Character.toUpperCase(c);
+            int idx = alphabet.indexOf(cUpper);
             if (idx != -1) {
-                c = shiftedAlphabet.charAt(idx);
-                sb.setCharAt(i, c);
+                char charNew = shiftedAlphabet.charAt(idx);
+                if (Character.isUpperCase(c) == true) {
+                    sb.setCharAt(i, charNew);
+                }
+                else {
+                    charNew = Character.toLowerCase(charNew);
+                    sb.setCharAt(i, charNew);
+                }
+                
             } 
         }
         return sb.toString();
