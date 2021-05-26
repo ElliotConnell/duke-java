@@ -61,8 +61,38 @@ public class TestCaesarCipherTwo {
         CaesarCipherTwo cc = new CaesarCipherTwo(17, 3);
         String encrypted = cc.encrypt(message);
         System.out.println(encrypted);
-        String decrypted = cc.decrypt(encrypted);
+        
+        String decrypted = breakCaesarCipher(encrypted);
         System.out.println(decrypted);
+    }
+    
+    public int getKey(String s){
+        int[] counts = countLetters(s);
+        int index = maxIndex(counts);
+        
+        return index;
+    }
+    
+    
+    public String breakCaesarCipher(String input) {
+        String stringA = halfOfString(input, 0);
+        String stringB = halfOfString(input, 1);
+        
+        int index1 = getKey(stringA);
+        int dkey1 = index1 - 4;
+        if (index1 < 4) {
+            dkey1 = 26 - (4-index1);
+        }
+        int index2 = getKey(stringB);
+        int dkey2 = index2 - 4;
+        if (index2 < 4) {
+            dkey2 = 26 - (4-index2);
+        }
+        
+        CaesarCipherTwo cc = new CaesarCipherTwo(26 - dkey1, 26 - dkey2);
+        String decrypted = cc.encrypt(input);
+        
+        return decrypted;
     }
 }
 
