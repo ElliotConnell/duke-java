@@ -35,6 +35,10 @@ public class WordLengths {
             if (lastChar == false){
                 len = len -1;
             }
+            
+            if (len < 1) {
+                len = 1;
+            }
                 
             counts[len] += 1;
         }
@@ -65,7 +69,7 @@ public class WordLengths {
     
     public void testCountWordLengths() {
         FileResource resource = new FileResource();
-        int[] counts = new int[31];
+        int[] counts = new int[50];
         
         countWordLengths(resource, counts);
         

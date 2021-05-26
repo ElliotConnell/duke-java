@@ -58,7 +58,7 @@ public class CaesarCipher {
         //message = encrypt("First Legion", 17);
         //System.out.println(message);
         
-        String message = encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15);
+        String message = encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?", 15);
         System.out.println(message);
         
         //FileResource fr = new FileResource();
@@ -114,7 +114,7 @@ public class CaesarCipher {
         //String message = encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21);
         //System.out.println(message);
         
-        String message = encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx", 2, 10);
+        String message = encryptTwoKeys("Can you imagine life WITHOUT the internet AND computers in your pocket?", 21, 8);
         System.out.println(message);
         }
 
