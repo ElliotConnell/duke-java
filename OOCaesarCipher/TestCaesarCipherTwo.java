@@ -5,6 +5,12 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
+
+import edu.duke.*;
+import org.apache.commons.csv.*;
+import java.io.*;
+import java.lang.*;
+
 public class TestCaesarCipherTwo {
     
     public String halfOfString(String message, int start){
@@ -47,5 +53,17 @@ public class TestCaesarCipherTwo {
         }
         return maxDex;
     }
-
+    
+    public void simpleTests() {
+        FileResource fr = new FileResource();
+        String message = fr.asString();
+        
+        CaesarCipherTwo cc = new CaesarCipherTwo(17, 3);
+        String encrypted = cc.encrypt(message);
+        System.out.println(encrypted);
+        String decrypted = cc.decrypt(encrypted);
+        System.out.println(decrypted);
+    }
 }
+
+
