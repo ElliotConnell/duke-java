@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=void\ CharactersInPlay()
 comment2.params=person
 comment2.target=void\ update(java.lang.String)
-numComments=3
+comment3.params=
+comment3.target=void\ findAllCharacters()
+numComments=4

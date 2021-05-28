@@ -44,5 +44,20 @@ public class CharactersInPlay {
         }
         
     }
+    
+    public void findAllCharacters() {
+        myNames.clear();
+        myCounts.clear();
+        FileResource resource = new FileResource();
+        
+        for (String line : resource.lines()) {
+            int endIndex = line.indexOf(".");
+            if (endIndex != -1) {
+                String character = line.substring(0, endIndex);
+                update(character);
+            }
+            
+        } 
+    }
 
 }
