@@ -2,4 +2,6 @@
 comment0.target=CharactersInPlay
 comment1.params=
 comment1.target=void\ CharactersInPlay()
-numComments=2
+comment2.params=person
+comment2.target=void\ update(java.lang.String)
+numComments=3

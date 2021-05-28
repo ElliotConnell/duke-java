@@ -27,5 +27,22 @@ public class CharactersInPlay {
         myNames = new ArrayList<String>();
         myCounts = new ArrayList<Integer>();
     }
+    
+    public void update(String person) {
+        String name = person;
+        
+        int index = myNames.indexOf(name);
+        
+        if (index == -1) {
+            myNames.add(name);
+            myCounts.add(1);
+        }
+        
+        else {
+            int value = myCounts.get(index);
+            myCounts.add(index, value + 1);
+        }
+        
+    }
 
 }
