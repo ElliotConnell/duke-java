@@ -73,13 +73,13 @@ public class CharactersInPlay {
         findAllCharacters();
         
         for (int k=0; k < myNames.size(); k++){
-            if (myCounts.get(k) > 1) {
+            if (myCounts.get(k) > 100) {
                 System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
             }
         }
         
-        charactersWithNumParts(2, 2);
-        charactersWithNumParts(3, 3);
+        charactersWithNumParts(10, 15);
+        //charactersWithNumParts(3, 3);
         
     }
 
