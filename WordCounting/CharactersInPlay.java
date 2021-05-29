@@ -23,7 +23,7 @@ public class CharactersInPlay {
     private ArrayList<String> myNames;
     private ArrayList<Integer> myCounts;
     
-    public void CharactersInPlay() {
+    public CharactersInPlay() {
         myNames = new ArrayList<String>();
         myCounts = new ArrayList<Integer>();
     }
@@ -40,7 +40,7 @@ public class CharactersInPlay {
         
         else {
             int value = myCounts.get(index);
-            myCounts.add(index, value + 1);
+            myCounts.set(index, value + 1);
         }
         
     }
@@ -58,6 +58,15 @@ public class CharactersInPlay {
             }
             
         } 
+    }
+    
+    public void tester() {
+        findAllCharacters();
+        
+        for (int k=0; k < myNames.size(); k++){
+            System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
+        }
+        
     }
 
 }
