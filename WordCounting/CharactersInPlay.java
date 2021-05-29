@@ -60,12 +60,26 @@ public class CharactersInPlay {
         } 
     }
     
+    public void charactersWithNumParts(int num1, int num2) {
+        for (int k=0; k < myNames.size(); k++) {
+            int parts = myCounts.get(k);
+            if ((parts >= num1) && (parts <= num2)) {
+                System.out.println(myNames.get(k));
+            }
+        }
+    }
+    
     public void tester() {
         findAllCharacters();
         
         for (int k=0; k < myNames.size(); k++){
-            System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
+            if (myCounts.get(k) > 1) {
+                System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
+            }
         }
+        
+        charactersWithNumParts(2, 2);
+        charactersWithNumParts(3, 3);
         
     }
 
