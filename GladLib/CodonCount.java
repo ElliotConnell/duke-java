@@ -65,5 +65,14 @@ public class CodonCount {
         
         return mostCommon;
     }
+    
+    public void printCodonCounts(int start, int end) {
+        for (String s: myCodon.keySet()){
+            int count = myCodon.get(s);
+            if (count <= end && count >= start) {
+                System.out.println(s + "/t+" + myCodon.get(s));
+            }
+        }
+    }
 
 }
