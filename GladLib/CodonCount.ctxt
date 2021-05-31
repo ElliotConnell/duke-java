@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=CodonCount()
 comment2.params=start\ dna
 comment2.target=void\ buildCodonMap(int,\ java.lang.String)
-numComments=3
+comment3.params=
+comment3.target=java.lang.String\ getMostCommonCodon()
+numComments=4

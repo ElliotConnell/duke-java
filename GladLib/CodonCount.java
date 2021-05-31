@@ -51,5 +51,19 @@ public class CodonCount {
         
     }
     
+    private String getMostCommonCodon() {
+        int maxCount = 0;
+        String mostCommon = "";
+        
+        for (String s: myCodon.keySet()) {
+            int currCount = myCodon.get(s);
+            if (currCount > maxCount){
+                mostCommon = s;
+                maxCount = currCount;
+            }
+        }
+        
+        return mostCommon;
+    }
 
 }
