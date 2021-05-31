@@ -36,5 +36,20 @@ public class CodonCount {
         myCodon = new HashMap<String, Integer>();
     }
     
+    private void buildCodonMap(int start, String dna) {
+        myCodon.clear();
+        
+        for (int i = start; i < dna.length() - 3; i += 3) {
+            String codon = dna.substring(i, i + 3);
+            if (!myCodon.containsKey(codon)) {
+                myCodon.put(codon, 1);
+            }
+            else {
+                myCodon.put(codon, myCodon.get(codon) + 1);
+            }
+        }
+        
+    }
+    
 
 }

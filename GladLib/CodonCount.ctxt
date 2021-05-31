@@ -2,4 +2,6 @@
 comment0.target=CodonCount
 comment1.params=
 comment1.target=CodonCount()
-numComments=2
+comment2.params=start\ dna
+comment2.target=void\ buildCodonMap(int,\ java.lang.String)
+numComments=3
