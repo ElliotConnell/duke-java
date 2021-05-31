@@ -9,6 +9,9 @@ public class GladLib {
 	private ArrayList<String> nameList;
 	private ArrayList<String> animalList;
 	private ArrayList<String> timeList;
+	private ArrayList<String> verbList;
+	private ArrayList<String> fruitList;
+	
 	
 	private Random myRandom;
 	
