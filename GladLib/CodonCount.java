@@ -70,8 +70,21 @@ public class CodonCount {
         for (String s: myCodon.keySet()){
             int count = myCodon.get(s);
             if (count <= end && count >= start) {
-                System.out.println(s + "/t+" + myCodon.get(s));
+                System.out.println(s + "\t" + myCodon.get(s));
             }
+        }
+    }
+    
+    public void tester() {
+        FileResource fr = new FileResource();
+        String dna = fr.asString();
+        dna = dna.toUpperCase();
+        
+        for (int i = 0; i <= 2; i++){
+            buildCodonMap(i, dna);
+            String result = getMostCommonCodon();
+            System.out.println("most common codon = " + result);
+            printCodonCounts(1, 5);
         }
     }
 
