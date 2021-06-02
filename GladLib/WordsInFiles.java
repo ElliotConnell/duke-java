@@ -48,7 +48,7 @@ public class WordsInFiles {
     
     public void buildWordFileMap() {
         fileMap.clear();
-        ArrayList<String> alFileMap = new ArrayList<String>();
+        //ArrayList<String> alFileMap = new ArrayList<String>();
         
         DirectoryResource dr = new DirectoryResource();
         
@@ -56,13 +56,7 @@ public class WordsInFiles {
             addWordsFromFile(f);
         }
         
-        for (String sKey: fileMap.keySet()) {
-             alFileMap = fileMap.get(sKey);
-             for (String s: alFileMap) {
-                 System.out.println("  " + s);
-             }
-               
-        }
+        
     }
     
 
