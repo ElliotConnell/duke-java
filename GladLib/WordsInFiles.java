@@ -22,23 +22,46 @@ public class WordsInFiles {
     
     private void addWordsFromFile(File f){
         FileResource fr = new FileResource(f);
-        ArrayList<String> filename = new ArrayList<String>();
+        ArrayList<String> alFileName = new ArrayList<String>();
         
         for (String sKey: fr.words()){
-            filename.clear();
+            alFileName.clear();
             //System.out.println(sKey);
             
             if (fileMap.containsKey(sKey)) {
-                filename = fileMap.get(sKey);
-                if (!filename.contains(f.getName())) {
-                    filename.add(f.getName());
+                alFileName = fileMap.get(sKey);
+                if (!alFileName.contains(f.getName())) {
+                    alFileName.add(f.getName());
                 }
             }
             else {
-                filename.add(f.getName());
+                alFileName.add(f.getName());
             }
             
-            fileMap.put(sKey, filename);
+            fileMap.put(sKey, alFileName);
+            System.out.println(alFileName);
+            System.out.println(fileMap);
+            System.out.println();
+            
+        }
+    }
+    
+    public void buildWordFileMap() {
+        fileMap.clear();
+        ArrayList<String> alFileMap = new ArrayList<String>();
+        
+        DirectoryResource dr = new DirectoryResource();
+        
+        for (File f : dr.selectedFiles()) {
+            addWordsFromFile(f);
+        }
+        
+        for (String sKey: fileMap.keySet()) {
+             alFileMap = fileMap.get(sKey);
+             for (String s: alFileMap) {
+                 System.out.println("  " + s);
+             }
+               
         }
     }
     
