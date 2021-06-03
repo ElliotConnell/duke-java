@@ -77,10 +77,28 @@ public class WordsInFiles {
         return maxFiles;
     }
     
+    private ArrayList<String> wordsInNumFiles(int number){
+        ArrayList<String> numList = new ArrayList<String>();
+        
+        for(String s: fileMap.keySet()){
+            ArrayList<String> list = fileMap.get(s);
+            if (number == list.size()) {
+                numList.add(s);
+            }
+        }
+        
+        return numList;
+    }
+    
     public void tester() {
         buildWordFileMap();
-        int result = maxNumber();
-        System.out.println(result);
+        //int result = maxNumber();
+        //System.out.println(result);
+        
+        ArrayList<String> test = wordsInNumFiles(3);
+        System.out.println(test);
+        test = wordsInNumFiles(2);
+        System.out.println(test);
     }
 
 }
