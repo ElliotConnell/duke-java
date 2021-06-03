@@ -90,6 +90,18 @@ public class WordsInFiles {
         return numList;
     }
     
+    private void printFilesIn(String word) {
+        for (String n: fileMap.keySet()){
+            ArrayList<String> file = fileMap.get(n);
+            if (word.equals(n)){
+                ArrayList<String> getWord = fileMap.get(word);
+                for (String i: getWord){
+                    System.out.println(i);
+                }
+            }
+        }
+    }
+    
     public void tester() {
         buildWordFileMap();
         //int result = maxNumber();
@@ -99,6 +111,9 @@ public class WordsInFiles {
         System.out.println(test);
         test = wordsInNumFiles(2);
         System.out.println(test);
+        System.out.println();
+        printFilesIn("cats");
+        
     }
 
 }
