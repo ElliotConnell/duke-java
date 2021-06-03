@@ -22,11 +22,13 @@ public class WordsInFiles {
     
     private void addWordsFromFile(File f){
         FileResource fr = new FileResource(f);
-        ArrayList<String> alFileName = new ArrayList<String>();
+        
+        
         
         for (String sKey: fr.words()){
-            alFileName.clear();
-            //System.out.println(sKey);
+            
+            ArrayList<String> alFileName = new ArrayList<String>();
+           
             
             if (fileMap.containsKey(sKey)) {
                 alFileName = fileMap.get(sKey);
@@ -35,20 +37,22 @@ public class WordsInFiles {
                 }
             }
             else {
-                alFileName.add(f.getName());
+                if (!alFileName.contains(f.getName())){
+                    alFileName.add(f.getName());
+                }
             }
             
             fileMap.put(sKey, alFileName);
-            System.out.println(alFileName);
-            System.out.println(fileMap);
-            System.out.println();
+            //System.out.println(alFileName);
+            //System.out.println(fileMap);
+            //System.out.println();
             
         }
     }
     
     public void buildWordFileMap() {
         fileMap.clear();
-        //ArrayList<String> alFileMap = new ArrayList<String>();
+        
         
         DirectoryResource dr = new DirectoryResource();
         
@@ -59,5 +63,24 @@ public class WordsInFiles {
         
     }
     
+    private int maxNumber() {
+        int maxFiles = 0;
+        
+        for (String word: fileMap.keySet()) {
+            ArrayList<String> tempFiles = new ArrayList<String> (fileMap.get(word));
+            int noOfFiles = tempFiles.size();
+            
+            if (noOfFiles > maxFiles) {
+                maxFiles = noOfFiles;
+            }
+        }
+        return maxFiles;
+    }
+    
+    public void tester() {
+        buildWordFileMap();
+        int result = maxNumber();
+        System.out.println(result);
+    }
 
 }
