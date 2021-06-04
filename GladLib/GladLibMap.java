@@ -29,7 +29,7 @@ public class GladLibMap {
     public GladLibMap(){
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
-        usedWords = new ArrayList<String>();
+        //usedWords = new ArrayList<String>();
         myMap = new HashMap<String, ArrayList<String>>();
     }
     
@@ -39,15 +39,14 @@ public class GladLibMap {
     }
     
     private void initializeFromSource(String source) {
-        adjectiveList= readIt(source+"/adjective.txt"); 
-        nounList = readIt(source+"/noun.txt");
-        colorList = readIt(source+"/color.txt");
-        countryList = readIt(source+"/country.txt");
-        nameList = readIt(source+"/name.txt");      
-        animalList = readIt(source+"/animal.txt");
-        timeList = readIt(source+"/timeframe.txt");
-        verbList = readIt(source+"/verb.txt");
-        fruitList = readIt(source+"/fruit.txt");
+        String[] categories = {"adjective", "noun", "color", "country", "name", "animal", "timeframe", "verb","fruit"};
+        
+        for (String s: categories){
+            ArrayList<String> list = readIt(source + "/" + s + ".txt");
+            myMap.put(s, list);
+            usedWords = new ArrayList<String>();
+        }
+        
     }
     
     private String randomFrom(ArrayList<String> source){
