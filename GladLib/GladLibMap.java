@@ -27,10 +27,11 @@ public class GladLibMap {
 
     
     public GladLibMap(){
+        myMap = new HashMap<String, ArrayList<String>>();
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
         //usedWords = new ArrayList<String>();
-        myMap = new HashMap<String, ArrayList<String>>();
+        
     }
     
     public GladLibMap(String source){
@@ -55,37 +56,12 @@ public class GladLibMap {
     }
     
     private String getSubstitute(String label) {
-        if (label.equals("country")) {
-            return randomFrom(countryList);
+        if (label.equals("number")) {
+            return ""+myRandom.nextInt(50) + 5;
         }
-        if (label.equals("color")){
-            return randomFrom(colorList);
+        else {
+            return randomFrom(myMap.get(label));
         }
-        if (label.equals("noun")){
-            return randomFrom(nounList);
-        }
-        if (label.equals("name")){
-            return randomFrom(nameList);
-        }
-        if (label.equals("adjective")){
-            return randomFrom(adjectiveList);
-        }
-        if (label.equals("animal")){
-            return randomFrom(animalList);
-        }
-        if (label.equals("timeframe")){
-            return randomFrom(timeList);
-        }
-        if (label.equals("number")){
-            return ""+myRandom.nextInt(50)+5;
-        }
-        if (label.equals("verb")){
-            return randomFrom(verbList);
-        }
-        if (label.equals("fruit")){
-            return randomFrom(fruitList);
-        }
-        return "**UNKNOWN**";
     }
     
     private String processWord(String w){
