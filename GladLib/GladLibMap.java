@@ -1,9 +1,13 @@
-
 /**
  * Write a description of GladLibMap here.
+ * Start with your GladLibs program you completed earlier in this lesson. 
+ * Make a copy of it and call it GladLibMap.java. Now modify this program 
+ * to use one HashMap that maps word types to ArrayList of possible words 
+ * to select. Your program should still work for the additional categories 
+ * verbs and fruits and should not use duplicate words from a category. 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Elliot Connell) 
+ * @version (04/06/21)
  */
 
 import edu.duke.*;
@@ -11,15 +15,7 @@ import java.util.*;
 
 public class GladLibMap {
     
-    private ArrayList<String> adjectiveList;
-    private ArrayList<String> nounList;
-    private ArrayList<String> colorList;
-    private ArrayList<String> countryList;
-    private ArrayList<String> nameList;
-    private ArrayList<String> animalList;
-    private ArrayList<String> timeList;
-    private ArrayList<String> verbList;
-    private ArrayList<String> fruitList;
+    private HashMap<String, ArrayList<String>> myMap;
     private ArrayList<String> usedWords;
     
     
@@ -34,6 +30,7 @@ public class GladLibMap {
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
         usedWords = new ArrayList<String>();
+        myMap = new HashMap<String, ArrayList<String>>();
     }
     
     public GladLibMap(String source){
