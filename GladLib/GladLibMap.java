@@ -17,6 +17,7 @@ public class GladLibMap {
     
     private HashMap<String, ArrayList<String>> myMap;
     private ArrayList<String> usedWords;
+    private ArrayList<String> usedCategories;
     
     
     private Random myRandom;
@@ -30,7 +31,8 @@ public class GladLibMap {
         myMap = new HashMap<String, ArrayList<String>>();
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
-        //usedWords = new ArrayList<String>();
+        usedWords = new ArrayList<String>();
+        usedCategories = new ArrayList<String>();
         
     }
     
@@ -45,7 +47,6 @@ public class GladLibMap {
         for (String s: categories){
             ArrayList<String> list = readIt(source + "/" + s + ".txt");
             myMap.put(s, list);
-            usedWords = new ArrayList<String>();
         }
         
     }
@@ -72,14 +73,20 @@ public class GladLibMap {
         }
         String prefix = w.substring(0,first);
         String suffix = w.substring(last+1);
-        String sub = getSubstitute(w.substring(first+1,last));
+        String word = w.substring(first+1,last);
+        String sub = getSubstitute(word);
         
         if (!usedWords.contains(sub)){
             usedWords.add(sub);
+            
         }
         else {
-            
             return processWord(w);
+            //usedCategories.add(w);
+        }
+        
+        if (!usedCategories.contains(word)){
+            usedCategories.add(word);
         }
         
         return prefix+sub+suffix;
@@ -131,7 +138,7 @@ public class GladLibMap {
         return list;
     }
     
-    public int totalWordsInMap() {
+    private int totalWordsInMap() {
         int total = 0;
         
         for (ArrayList<String> category: myMap.values()) {
@@ -141,14 +148,29 @@ public class GladLibMap {
         return total;
     }
     
+    private int totalWordsConsidered(){
+        int total = 0;
+        
+        for (String s : usedCategories) {
+            if (!s.equals("number")){
+                total = total + myMap.get(s).size();
+            }
+        }
+        
+        return total;
+    }
+    
     public void makeStory(){
         usedWords.clear();
         System.out.println("\n");
-        String story = fromTemplate("datalong/madtemplate2.txt");
+        String story = fromTemplate("datalong/madtemplate.txt");
         printOut(story, 60);
         System.out.println("No of replaced words = " + usedWords.size());
         int total = totalWordsInMap();
         System.out.println("no of words in maps = " + total);
+        int considered = totalWordsConsidered();
+        System.out.println("no of words considered = " + considered);
+        
     }
 }
 
