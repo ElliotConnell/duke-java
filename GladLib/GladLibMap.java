@@ -22,7 +22,7 @@ public class GladLibMap {
     private Random myRandom;
     
     private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
-    private static String dataSourceDirectory = "data";
+    private static String dataSourceDirectory = "datalong";
     
 
     
@@ -131,12 +131,24 @@ public class GladLibMap {
         return list;
     }
     
+    public int totalWordsInMap() {
+        int total = 0;
+        
+        for (ArrayList<String> category: myMap.values()) {
+            total = total + category.size();
+        }
+        
+        return total;
+    }
+    
     public void makeStory(){
         usedWords.clear();
         System.out.println("\n");
         String story = fromTemplate("datalong/madtemplate2.txt");
         printOut(story, 60);
         System.out.println("No of replaced words = " + usedWords.size());
+        int total = totalWordsInMap();
+        System.out.println("no of words in maps = " + total);
     }
 }
 
