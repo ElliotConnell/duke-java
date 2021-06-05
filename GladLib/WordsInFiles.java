@@ -107,12 +107,12 @@ public class WordsInFiles {
         //int result = maxNumber();
         //System.out.println(result);
         
-        ArrayList<String> test = wordsInNumFiles(3);
-        System.out.println(test);
-        test = wordsInNumFiles(2);
-        System.out.println(test);
-        System.out.println();
-        printFilesIn("cats");
+        //ArrayList<String> test = wordsInNumFiles(4);
+        //System.out.println(test.size());
+        //test = wordsInNumFiles(2);
+        //System.out.println(test);
+        //System.out.println();
+        printFilesIn("tree");
         
     }
 

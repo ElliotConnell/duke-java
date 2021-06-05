@@ -72,11 +72,11 @@ public class CharactersInPlay {
     public void tester() {
         findAllCharacters();
         
-        for (int k=0; k < myNames.size(); k++){
-            if (myCounts.get(k) > 100) {
-                System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
-            }
-        }
+        //for (int k=0; k < myNames.size(); k++){
+        //    if (myCounts.get(k) > 50) {
+        //        System.out.println(myNames.get(k) + "\t" + myCounts.get(k));
+        //    }
+        //}
         
         charactersWithNumParts(10, 15);
         //charactersWithNumParts(3, 3);

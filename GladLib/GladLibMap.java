@@ -141,8 +141,8 @@ public class GladLibMap {
     private int totalWordsInMap() {
         int total = 0;
         
-        for (ArrayList<String> category: myMap.values()) {
-            total = total + category.size();
+        for (String category: myMap.keySet()) {
+            total += myMap.get(category).size();
         }
         
         return total;
@@ -170,7 +170,7 @@ public class GladLibMap {
         System.out.println("no of words in maps = " + total);
         int considered = totalWordsConsidered();
         System.out.println("no of words considered = " + considered);
-        
+        System.out.println(usedCategories);
     }
 }
 
