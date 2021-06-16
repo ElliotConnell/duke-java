@@ -39,4 +39,11 @@ public class Tester
         la.readFile("short-test_log");
         la.printAllHigherThanNum(200);
     }
+    
+    public void testUniqueIPVistsOnDay(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog-short_log");
+        System.out.println(la.uniqueIPVisitsOnDay("Sep 14"));
+        System.out.println(la.uniqueIPVisitsOnDay("Sep 30"));
+    }
 }
