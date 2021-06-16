@@ -19,6 +19,7 @@ public class LogEntry
      private String request;
      private int statusCode;
      private int bytesReturned;
+     private int location;
      
    public LogEntry(String ip, Date time, String req, int status, int bytes) {
        ipAddress = ip;
@@ -26,6 +27,7 @@ public class LogEntry
        request = req;
        statusCode = status;
        bytesReturned = bytes;
+       location = 0;
        
    }
    

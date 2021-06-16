@@ -25,7 +25,8 @@ public class LogAnalyzer
          // complete method
          FileResource fr = new FileResource(filename);
          for(String s : fr.lines()){
-             records.add(WebLogParser.parseEntry(s));             
+             LogEntry curr = WebLogParser.parseEntry(s);
+             records.add(curr);             
             }
      }
         
