@@ -48,7 +48,14 @@ public class LogAnalyzer
          return uniqueIPs.size();
      }
          
-     
+     public void printAllHigherThanNum(int num){
+         for(LogEntry le: records) {
+             int statusCode = le.getStatusCode();
+             if (statusCode > num){
+                 System.out.println(statusCode);
+             }
+         }
+     }
      
      
 }
