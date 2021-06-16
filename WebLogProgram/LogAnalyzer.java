@@ -52,9 +52,25 @@ public class LogAnalyzer
          for(LogEntry le: records) {
              int statusCode = le.getStatusCode();
              if (statusCode > num){
-                 System.out.println(statusCode);
+                 System.out.println(le);
              }
          }
+     }
+     
+     public ArrayList<String> uniqueIPVisitsOnDay(String someday) {
+         ArrayList<String> uniqueIPsOnDay = new ArrayList<String>();
+         for (LogEntry le: records) {
+             Date d = le.getAccessTime();
+             String str = d.toString();
+             
+             if (str.contains(someday)){
+                 String ipAddr = le.getIpAddress();
+                 if  (uniqueIPsOnDay.contains(ipAddr)){
+                     uniqueIPsOnDay.add(ipAddr);
+                 }
+             }
+         }
+         return uniqueIPsOnDay;
      }
      
      
