@@ -74,5 +74,17 @@ public class LogAnalyzer
          return uniqueIPsOnDay;
      }
      
+     public int countUniqueIPsInRange(int low, int high) {
+         int counter = 0;
+         
+         for (LogEntry le: records) {
+             int statusCode = le.getStatusCode();
+             if ((statusCode >= low) && (statusCode <= high)){
+                 counter += 1;
+             }
+         }
+         return counter;
+     }
+     
      
 }
