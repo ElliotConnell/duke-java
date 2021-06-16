@@ -62,10 +62,11 @@ public class LogAnalyzer
          for (LogEntry le: records) {
              Date d = le.getAccessTime();
              String str = d.toString();
+             String strSubstring = str.substring(4, 10);
              
-             if (str.contains(someday)){
+             if (strSubstring.equals(someday)){
                  String ipAddr = le.getIpAddress();
-                 if  (uniqueIPsOnDay.contains(ipAddr)){
+                 if  (!uniqueIPsOnDay.contains(ipAddr)){
                      uniqueIPsOnDay.add(ipAddr);
                  }
              }
