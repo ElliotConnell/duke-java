@@ -75,15 +75,18 @@ public class LogAnalyzer
      }
      
      public int countUniqueIPsInRange(int low, int high) {
-         int counter = 0;
+         ArrayList<String> uniqueIPs = new ArrayList<String>();
          
          for (LogEntry le: records) {
              int statusCode = le.getStatusCode();
              if ((statusCode >= low) && (statusCode <= high)){
-                 counter += 1;
+                 String ipAddr = le.getIpAddress();
+                 if(!uniqueIPs.contains(ipAddr)) {
+                     uniqueIPs.add(ipAddr);
+                    }
              }
          }
-         return counter;
+         return uniqueIPs.size();
      }
      
      
