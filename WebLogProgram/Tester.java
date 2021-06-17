@@ -36,25 +36,25 @@ public class Tester
     
     public void testPrintAllHigherThanNum(){
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("short-test_log");
-        la.printAllHigherThanNum(200);
+        la.readFile("weblog1_log");
+        la.printAllHigherThanNum(400);
     }
     
     public void testUniqueIPVistsOnDay(){
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("weblog-short_log");
-        System.out.println(la.uniqueIPVisitsOnDay("Sep 14"));
-        System.out.println(la.uniqueIPVisitsOnDay("Sep 30"));
+        la.readFile("weblog1_log");
+        System.out.println(la.uniqueIPVisitsOnDay("Mar 17"));
+        //System.out.println(la.uniqueIPVisitsOnDay("Sep 30"));
     }
     
     public void testCountUniqueIPsInRange(){
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("short-test_log");
-        int uniqueIPsInRange = la.countUniqueIPsInRange(200, 299);
+        la.readFile("weblog1_log");
+        int uniqueIPsInRange = la.countUniqueIPsInRange(300, 399);
         System.out.println("there are " + uniqueIPsInRange + " IPs in range"); 
         
-        uniqueIPsInRange = la.countUniqueIPsInRange(300, 399);
-        System.out.println("there are " + uniqueIPsInRange + " IPs in range");
+        //uniqueIPsInRange = la.countUniqueIPsInRange(300, 399);
+        //System.out.println("there are " + uniqueIPsInRange + " IPs in range");
 
     }
 }

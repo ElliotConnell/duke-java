@@ -71,6 +71,7 @@ public class LogAnalyzer
                  }
              }
          }
+         System.out.println(uniqueIPsOnDay.size());
          return uniqueIPsOnDay;
      }
      
