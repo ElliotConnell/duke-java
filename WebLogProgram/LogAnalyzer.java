@@ -131,5 +131,9 @@ public class LogAnalyzer
          return ipAddr;
      }
      
-     
+     public HashMap<String, ArrayList<String>> iPsForDays(){
+         HashMap<String, ArrayList<String>> dayCount = new HashMap<String, ArrayList<String>>();
+         
+         return dayCount;
+     }
 }
