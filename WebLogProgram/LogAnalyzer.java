@@ -60,11 +60,9 @@ public class LogAnalyzer
      public ArrayList<String> uniqueIPVisitsOnDay(String someday) {
          ArrayList<String> uniqueIPsOnDay = new ArrayList<String>();
          for (LogEntry le: records) {
-             Date d = le.getAccessTime();
-             String str = d.toString();
-             String strSubstring = str.substring(4, 10);
+             String d = le.getAccessTime().toString().substring(4, 10);
              
-             if (strSubstring.equals(someday)){
+             if (d.equals(someday)){
                  String ipAddr = le.getIpAddress();
                  if  (!uniqueIPsOnDay.contains(ipAddr)){
                      uniqueIPsOnDay.add(ipAddr);
