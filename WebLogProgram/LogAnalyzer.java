@@ -134,6 +134,21 @@ public class LogAnalyzer
      public HashMap<String, ArrayList<String>> iPsForDays(){
          HashMap<String, ArrayList<String>> dayCount = new HashMap<String, ArrayList<String>>();
          
+         for (LogEntry le : records) {
+             ArrayList <String> ipAddr = new ArrayList<String>();
+             String date = le.getAccessTime().toString().substring(4, 10);
+             String ip = le.getIpAddress();
+             if (!dayCount.containsKey(date)){
+                 ipAddr.add(ip);
+                 dayCount.put(date, ipAddr);
+             }
+             else { 
+                 ipAddr = dayCount.get(date);
+                 ipAddr.add(ip);
+                 dayCount.put(date, ipAddr);
+             }
+         }
+
          return dayCount;
      }
 }

@@ -80,4 +80,11 @@ public class Tester
         ArrayList<String> result = la.iPsMostVisits(counts);
         System.out.println(result);
     }
+    
+    public void testIPsForDays(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog3-short_log");
+        HashMap<String, ArrayList<String>> result = la.iPsForDays();
+        System.out.println(result);
+    }
 }
