@@ -72,4 +72,12 @@ public class Tester
         int result = la.mostNumberOfVisitsByIP(counts);
         System.out.println("most visits by a single ip = " + result);
     }
+    
+    public void testIPsMostVisits(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog3-short_log");
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        ArrayList<String> result = la.iPsMostVisits(counts);
+        System.out.println(result);
+    }
 }
