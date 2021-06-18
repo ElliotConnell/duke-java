@@ -106,5 +106,16 @@ public class LogAnalyzer
          return counts;
      }
      
+     public int mostNumberOfVisitsByIP(HashMap<String, Integer> map){
+         int maxValue = 0;
+         for (String ipAddr: map.keySet()){         
+            int visits = map.get(ipAddr);
+            if(visits > maxValue){
+                maxValue = visits;
+            }
+        }
+        return maxValue;
+     }
+     
      
 }

@@ -16,4 +16,6 @@ comment7.params=low\ high
 comment7.target=int\ countUniqueIPsInRange(int,\ int)
 comment8.params=
 comment8.target=java.util.HashMap\ countVisitsPerIP()
-numComments=9
+comment9.params=map
+comment9.target=int\ mostNumberOfVisitsByIP(java.util.HashMap)
+numComments=10
