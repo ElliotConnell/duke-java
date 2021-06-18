@@ -2,6 +2,8 @@
 comment0.target=LogAnalyzer
 comment1.params=
 comment1.target=LogAnalyzer()
+comment10.params=map
+comment10.target=java.util.ArrayList\ iPsMostVisits(java.util.HashMap)
 comment2.params=filename
 comment2.target=void\ readFile(java.lang.String)
 comment3.params=
@@ -18,4 +20,4 @@ comment8.params=
 comment8.target=java.util.HashMap\ countVisitsPerIP()
 comment9.params=map
 comment9.target=int\ mostNumberOfVisitsByIP(java.util.HashMap)
-numComments=10
+numComments=11
