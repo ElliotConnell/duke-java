@@ -64,4 +64,12 @@ public class Tester
         HashMap<String, Integer> counts = la.countVisitsPerIP();
         System.out.println(counts);
     }
+    
+    public void testMostNumberOfVisitsByIP(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog3-short_log");
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        int result = la.mostNumberOfVisitsByIP(counts);
+        System.out.println("most visits by a single ip = " + result);
+    }
 }
