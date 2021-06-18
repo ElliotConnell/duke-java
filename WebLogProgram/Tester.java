@@ -87,4 +87,12 @@ public class Tester
         HashMap<String, ArrayList<String>> result = la.iPsForDays();
         System.out.println(result);
     }
+    
+    public void testDayWithMostIPVisits(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog3-short_log");
+        HashMap<String, ArrayList<String>> myMap = la.iPsForDays();
+        String result = la.dayWithMostIPVisits(myMap);
+        System.out.println("day with most ip visits = " + result); 
+    }
 }

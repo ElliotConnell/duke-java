@@ -149,4 +149,10 @@ public class LogAnalyzer
 
          return dayCount;
      }
+     
+     public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> map){
+         String result = "";
+         
+         return result;
+     }
 }
