@@ -14,4 +14,6 @@ comment6.params=someday
 comment6.target=java.util.ArrayList\ uniqueIPVisitsOnDay(java.lang.String)
 comment7.params=low\ high
 comment7.target=int\ countUniqueIPsInRange(int,\ int)
-numComments=8
+comment8.params=
+comment8.target=java.util.HashMap\ countVisitsPerIP()
+numComments=9
