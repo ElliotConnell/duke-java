@@ -57,4 +57,11 @@ public class Tester
         //System.out.println("there are " + uniqueIPsInRange + " IPs in range");
 
     }
+    
+    public void testCounts() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog1_log");
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        System.out.println(counts);
+    }
 }
