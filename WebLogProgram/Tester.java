@@ -95,4 +95,12 @@ public class Tester
         String result = la.dayWithMostIPVisits(myMap);
         System.out.println("day with most ip visits = " + result); 
     }
+    
+    public void testIPsWithMostVisitsOnDay(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog3-short_log");
+        HashMap<String, ArrayList<String>> myMap = la.iPsForDays();
+        ArrayList<String> result = la.iPsWithMostVisitsOnDay(myMap, "Sep 30");
+        System.out.println(result); 
+    }
 }

@@ -163,4 +163,10 @@ public class LogAnalyzer
          
          return result;
      }
+     
+     public ArrayList<String> iPsWithMostVisitsOnDay( HashMap<String, ArrayList<String>> map, String day){
+         ArrayList <String> result = new ArrayList<String>();
+         
+         return result;
+     }
 }
