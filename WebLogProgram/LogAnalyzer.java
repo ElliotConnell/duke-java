@@ -152,6 +152,14 @@ public class LogAnalyzer
      
      public String dayWithMostIPVisits(HashMap<String, ArrayList<String>> map){
          String result = "";
+         int maxVisits = 0;
+         
+         for(String key: map.keySet()){
+             if (map.get(key).size() > maxVisits) {
+                 maxVisits = map.get(key).size();
+                 result = key;
+             }             
+         }         
          
          return result;
      }
