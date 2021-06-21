@@ -3,8 +3,12 @@ import edu.duke.*;
 
 public class VigenereBreaker {
     public String sliceString(String message, int whichSlice, int totalSlices) {
-        //REPLACE WITH YOUR CODE
-        return "WRITE ME!";
+        String slicedString = "";
+        
+        for (int index = whichSlice; index < message.length(); index += totalSlices){
+            slicedString = slicedString + message.charAt(index);
+        }
+        return slicedString;
     }
 
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
