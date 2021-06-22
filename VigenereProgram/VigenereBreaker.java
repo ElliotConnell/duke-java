@@ -57,5 +57,26 @@ public class VigenereBreaker {
         return counter;
     }
     
+    public String breakForLanguage(String encrypted, HashSet<String> dictionary){
+        int highestWordCount = 0;
+        String result = "";
+        
+        
+        for (int klength = 1; klength <=100; klength++){
+            int[] key = tryKeyLength(encrypted, klength, 'e');
+            VigenereCipher vc = new VigenereCipher(key);
+            String decrypted = vc.decrypt(encrypted);
+            int validWords = countWords(decrypted, dictionary);
+            
+            if (validWords > highestWordCount){
+                highestWordCount = validWords;
+                result = decrypted;
+            }
+            
+        }
+        
+        return result;
+    }
+    
     
 }
