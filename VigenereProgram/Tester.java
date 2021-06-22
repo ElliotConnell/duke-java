@@ -69,5 +69,17 @@ public class Tester {
         HashSet<String> dictionary = vb.readDictionary(fr);
         System.out.println(dictionary);
     }
+    
+    public void testCountWords(){
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        FileResource dict = new FileResource();
+        
+        
+        String message = fr.asString();
+        HashSet<String> dictionary = vb.readDictionary(dict);
+        int result = vb.countWords(message, dictionary);
+        System.out.println("num. of valid words = " + result);
+    }
 
 }
