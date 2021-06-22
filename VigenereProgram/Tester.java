@@ -81,5 +81,17 @@ public class Tester {
         int result = vb.countWords(message, dictionary);
         System.out.println("num. of valid words = " + result);
     }
+    
+    public void testBreakForLanguage(){
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        FileResource dict = new FileResource();
+        
+        
+        String message = fr.asString();
+        HashSet<String> dictionary = vb.readDictionary(dict);
+        String result = vb.breakForLanguage(message, dictionary);
+        System.out.println(result);
+    }
 
 }
