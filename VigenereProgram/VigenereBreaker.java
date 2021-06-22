@@ -13,7 +13,14 @@ public class VigenereBreaker {
 
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
         int[] key = new int[klength];
-        //WRITE YOUR CODE HERE
+        
+        for (int i = 0;  i < klength; i++){
+            CaesarCracker cc = new CaesarCracker(mostCommon);
+            String slice = sliceString(encrypted, i, klength);
+            int slicedKey = cc.getKey(slice);
+            key[i] = slicedKey;
+        }
+        
         return key;
     }
 
@@ -58,5 +65,7 @@ public class VigenereBreaker {
         result = sliceString("abcdefghijklm", 4, 5);
         System.out.println("expected result = 'ej'. returns " + result);
     }
+    
+   
     
 }
