@@ -3,12 +3,12 @@ import edu.duke.*;
 
 public class VigenereBreaker {
     public String sliceString(String message, int whichSlice, int totalSlices) {
-        String slicedString = "";
+        StringBuilder slicedString = new StringBuilder();
         
         for (int index = whichSlice; index < message.length(); index += totalSlices){
-            slicedString = slicedString + message.charAt(index);
+            slicedString.append(message.charAt(index));
         }
-        return slicedString;
+        return slicedString.toString();
     }
 
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
@@ -63,6 +63,7 @@ public class VigenereBreaker {
     public String breakForLanguage(String encrypted, HashSet<String> dictionary){
         int highestWordCount = 0;
         String result = "";
+        int finalKLength = 0;
         
         
         for (int klength = 1; klength <=100; klength++){
@@ -74,10 +75,13 @@ public class VigenereBreaker {
             if (validWords > highestWordCount){
                 highestWordCount = validWords;
                 result = decrypted;
+                finalKLength = klength;
             }
             
         }
         
+        System.out.println(highestWordCount);
+        System.out.println(finalKLength);
         
         return result;
     }
