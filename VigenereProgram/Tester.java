@@ -5,6 +5,11 @@
  * @author (Elliot Connell) 
  * @version (22/06/21)
  */
+
+
+import edu.duke.*;
+import java.util.*;
+
 public class Tester {
     
     public void testSliceString(){
@@ -45,6 +50,16 @@ public class Tester {
         
         result = vb.sliceString("abcdefghijklm", 4, 5);
         System.out.println("expected result = 'ej'. returns " + result);
+    }
+    
+    public void testTryKeyLength(){
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        String encrypted = fr.asString();
+        
+        int[] result = vb.tryKeyLength(encrypted, 5, 'e');
+        System.out.println(Arrays.toString(result));
+        
     }
 
 }
