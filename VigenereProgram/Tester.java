@@ -57,7 +57,7 @@ public class Tester {
         FileResource fr = new FileResource();
         String encrypted = fr.asString();
         
-        int[] result = vb.tryKeyLength(encrypted, 5, 'e');
+        int[] result = vb.tryKeyLength(encrypted, 4, 'e');
         System.out.println(Arrays.toString(result));
         
     }
