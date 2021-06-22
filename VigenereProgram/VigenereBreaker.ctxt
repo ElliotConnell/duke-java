@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ breakVigenere()
 comment4.params=fr
 comment4.target=java.util.HashSet\ readDictionary(edu.duke.FileResource)
-numComments=5
+comment5.params=message\ dictionary
+comment5.target=int\ countWords(java.lang.String,\ java.util.HashSet)
+numComments=6
