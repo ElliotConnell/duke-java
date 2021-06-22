@@ -61,5 +61,13 @@ public class Tester {
         System.out.println(Arrays.toString(result));
         
     }
+    
+    public void testReadDictionary(){
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        
+        HashSet<String> dictionary = vb.readDictionary(fr);
+        System.out.println(dictionary);
+    }
 
 }
