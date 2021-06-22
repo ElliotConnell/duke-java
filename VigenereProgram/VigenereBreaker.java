@@ -33,4 +33,14 @@ public class VigenereBreaker {
         System.out.println(decrypted);       
     }
     
+    public HashSet<String> readDictionary(FileResource fr){
+        HashSet<String> dictionary = new HashSet();
+        
+        for (String line: fr.lines()){
+            dictionary.add(line.toLowerCase());
+        }
+        
+        return dictionary;
+    }
+    
 }
