@@ -26,10 +26,13 @@ public class VigenereBreaker {
 
     public void breakVigenere () {
         FileResource fr = new FileResource();
+        FileResource dict = new FileResource("dictionaries/English");
+        
+        HashSet<String> dictionary = readDictionary(dict);
+       
+        
         String message = fr.asString();
-        int[] key = tryKeyLength(message, 4, 'e');
-        VigenereCipher vc = new VigenereCipher(key);
-        String decrypted = vc.decrypt(message);
+        String decrypted = breakForLanguage(message, dictionary);
         System.out.println(decrypted);       
     }
     
@@ -74,6 +77,7 @@ public class VigenereBreaker {
             }
             
         }
+        
         
         return result;
     }
