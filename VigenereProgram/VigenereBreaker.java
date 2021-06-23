@@ -86,5 +86,28 @@ public class VigenereBreaker {
         return result;
     }
     
+    public char mostCommonCharIn(HashSet<String> dictionary){
+        char mostCommonCharIn = Character.MIN_VALUE;
+        
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        int[] counts = new int[26];
+        
+        for (String word: dictionary){
+            for(int i=0; i<word.length(); i++){
+                int index = alphabet.indexOf(Character.toLowerCase(word.charAt(i)));
+                if (index != -1){
+                    counts[index] += 1;
+                }
+            }
+        }
+        int maxIndex = 0;
+        
+        for (int i=0; i<counts.length; i++){
+            if(counts[i] > counts[maxIndex]){
+                maxIndex = i;
+            }
+        }
+        return alphabet.charAt(maxIndex);
+    }
     
 }
