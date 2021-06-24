@@ -110,4 +110,26 @@ public class VigenereBreaker {
         return alphabet.charAt(maxIndex);
     }
     
+    public void breakForAllLanguages(String encrypted, HashMap<String, HashSet <String>> languages){
+        String resultLanguage = "";
+        String resultDecryption = "";
+        int counter = 0;
+        
+        for (String s: languages.keySet()){
+            HashSet<String> currDict = languages.get(s);
+            char currMostCommon = mostCommonCharIn(currDict);
+            String currDecryption = breakForLanguage(encrypted, currDict);
+            int currCounts = countWords(currDecryption, currDict);
+            
+            if (currCounts > counter){
+                counter = currCounts;
+                resultDecryption = currDecryption;
+                resultLanguage = s;
+            }
+        }
+        
+        System.out.println("language = " + resultLanguage);
+        System.out.println(resultDecryption);
+    }
+    
 }
