@@ -9,6 +9,7 @@
 
 import edu.duke.*;
 import java.util.*;
+import java.io.*;
 
 public class Tester {
     
@@ -57,7 +58,7 @@ public class Tester {
         FileResource fr = new FileResource();
         String encrypted = fr.asString();
         
-        int[] result = vb.tryKeyLength(encrypted, 38git status, 'e');
+        int[] result = vb.tryKeyLength(encrypted, 38, 'e');
         System.out.println(Arrays.toString(result));
         
     }
@@ -92,6 +93,26 @@ public class Tester {
         HashSet<String> dictionary = vb.readDictionary(dict);
         String result = vb.breakForLanguage(message, dictionary);
         System.out.println(result);
+    }
+    
+    public void testBreakForAllLanguages(){
+        VigenereBreaker vb = new VigenereBreaker();
+        
+        HashMap<String, HashSet<String>> languages = new HashMap <String, HashSet<String>>();
+        
+        DirectoryResource dr = new DirectoryResource();
+        for (File dictFile: dr.selectedFiles()){
+            FileResource fr = new FileResource(dictFile.getAbsoluteFile());
+            HashSet<String> dictionary = vb.readDictionary(fr);
+            languages.put(dictFile.getName(), dictionary);
+        }
+        
+        FileResource sc = new FileResource();
+        String encrypted = sc.asString();
+        
+        vb.breakForAllLanguages(encrypted, languages);
+        
+        
     }
 
 }
