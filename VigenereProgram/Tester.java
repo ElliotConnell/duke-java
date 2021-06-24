@@ -111,8 +111,7 @@ public class Tester {
         String encrypted = sc.asString();
         
         vb.breakForAllLanguages(encrypted, languages);
-        
-        
+
     }
 
 }

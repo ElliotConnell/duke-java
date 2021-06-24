@@ -80,8 +80,8 @@ public class VigenereBreaker {
             
         }
         
-        System.out.println(highestWordCount);
-        System.out.println(finalKLength);
+        //System.out.println(highestWordCount);
+        //System.out.println(finalKLength);
         
         return result;
     }
