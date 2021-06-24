@@ -1,5 +1,6 @@
 import java.util.*;
 import edu.duke.*;
+import java.io.*;
 
 public class VigenereBreaker {
     public String sliceString(String message, int whichSlice, int totalSlices) {
@@ -25,15 +26,20 @@ public class VigenereBreaker {
     }
 
     public void breakVigenere () {
-        FileResource fr = new FileResource();
-        FileResource dict = new FileResource("dictionaries/English");
         
-        HashSet<String> dictionary = readDictionary(dict);
-       
+
+        HashMap<String, HashSet<String>> languages = new HashMap <String, HashSet<String>>();
+        DirectoryResource dr = new DirectoryResource();
         
-        String message = fr.asString();
-        String decrypted = breakForLanguage(message, dictionary);
-        System.out.println(decrypted);       
+        for (File dictFile: dr.selectedFiles()){
+            FileResource fr = new FileResource(dictFile.getAbsoluteFile()); 
+            HashSet<String> dictionary = readDictionary(fr);
+            languages.put(dictFile.getName(), dictionary);
+        }
+        
+        FileResource sc = new FileResource();
+        String message = sc.asString();
+        breakForAllLanguages(message, languages);       
     }
     
     public HashSet<String> readDictionary(FileResource fr){
