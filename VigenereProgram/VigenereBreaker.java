@@ -64,10 +64,10 @@ public class VigenereBreaker {
         int highestWordCount = 0;
         String result = "";
         int finalKLength = 0;
-        
+        char mostCommonChar = mostCommonCharIn(dictionary);
         
         for (int klength = 1; klength <=100; klength++){
-            int[] key = tryKeyLength(encrypted, klength, 'e');
+            int[] key = tryKeyLength(encrypted, klength, mostCommonChar);
             VigenereCipher vc = new VigenereCipher(key);
             String decrypted = vc.decrypt(encrypted);
             int validWords = countWords(decrypted, dictionary);
